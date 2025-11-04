@@ -15,4 +15,11 @@ export default defineConfig({
       '@views': path.resolve(__dirname, './src/views'),
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler', // или 'modern' для новой версии Sass
+      },
+    },
+  },
 });

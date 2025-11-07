@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route, Outlet, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
-import { routes } from './routes';
+import { routesEnum } from './routes';
 
 const App = () => {
   const Home = lazy(() => import('./views/Home'));
@@ -19,12 +19,12 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path={routes.HOME} element={SuspenseElement(<Home />)}>
+      <Route path={routesEnum.HOME} element={SuspenseElement(<Home />)}>
         <Route index element={SuspenseElement(<Home />)} />
-        <Route path={routes.FILM} element={SuspenseElement(<Film />)} />
-        <Route path={routes.GENRES} element={SuspenseElement(<Genres />)} />
-        <Route path={routes.GENRE} element={SuspenseElement(<Genre />)} />
-        <Route path={routes.PROFILE} element={SuspenseElement(<Profile />)} />
+        <Route path={routesEnum.FILM} element={SuspenseElement(<Film />)} />
+        <Route path={routesEnum.GENRES} element={SuspenseElement(<Genres />)} />
+        <Route path={routesEnum.GENRE} element={SuspenseElement(<Genre />)} />
+        <Route path={routesEnum.PROFILE} element={SuspenseElement(<Profile />)} />
         <Route path={'*'} element={SuspenseElement(<Page404 />)} />
       </Route>
     </Routes>

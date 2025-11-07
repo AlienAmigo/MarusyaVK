@@ -1,7 +1,7 @@
-export const routes = {
+export const routesEnum = {
   HOME: '/',
   GENRES: '/genres',
-  GENRE: '/genre/{id}',
-  FILM: '/film/{id}',
+  GENRE: '/genre/:id',
+  FILM: '/film/:id',
   PROFILE: '/profile',
 }

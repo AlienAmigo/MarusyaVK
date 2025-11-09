@@ -15,7 +15,7 @@ export const Header: React.FC<IHeader> = ({ className }) => {
   const classes = classNames(st.Header, className);
 
   return (
-    <div className={classes}>
+    <header className={classes}>
       <Link to={routesEnum.HOME}></Link>
       <nav className={st.Header__nav}>
         <ul className={st['Header__nav-list']}>
@@ -36,6 +36,6 @@ export const Header: React.FC<IHeader> = ({ className }) => {
           </li>
         </ul>
       </nav>
-    </div>
+    </header>
   );
 };

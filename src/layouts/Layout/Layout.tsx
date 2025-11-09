@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { Outlet } from 'react-router-dom';
 
 import { Header } from '@components/Header';
+import { Footer } from '@components/Footer';
 
 import st from './Layout.module.scss';
 
@@ -17,6 +18,7 @@ export const Layout: React.FC<ILayoutProps> = ({ className, children }) => {
     <div className={classes}>
       <Header />
       <Outlet context={children} />
+      <Footer />
     </div>
   );
 };

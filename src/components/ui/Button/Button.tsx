@@ -9,7 +9,7 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
 }
 
 export const Button: React.FC<IButtonProps> = ({ variant, className, children }) => {
-  const classes = classNames(st.Button, className);
+  const classes = classNames(st.Button, st[`Button--variant--${variant}`], className);
 
   return <button className={classes}>{children}</button>;
 };

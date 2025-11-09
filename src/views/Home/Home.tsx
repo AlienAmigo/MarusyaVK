@@ -1,8 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Layout } from '@/layouts/Layout';
-
 import st from './Home.module.scss';
 
 export interface IHome {
@@ -12,7 +10,7 @@ export interface IHome {
 const Home: React.FC<IHome> = ({ className }) => {
   const classes = classNames(st.Home, className);
 
-  return <Layout className={classes}>Home</Layout>;
+  return <div className={classes}>Home</div>;
 };
 
 export default Home;

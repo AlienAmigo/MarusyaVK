@@ -1,6 +1,8 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import { Layout } from '@/layouts/Layout';
+
 import { routesEnum } from './routes';
 
 const App = () => {
@@ -19,7 +21,7 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path={routesEnum.HOME} element={SuspenseElement(<Home />)}>
+      <Route path={routesEnum.HOME} element={<Layout />}>
         <Route index element={SuspenseElement(<Home />)} />
         <Route path={routesEnum.FILM} element={SuspenseElement(<Film />)} />
         <Route path={routesEnum.GENRES} element={SuspenseElement(<Genres />)} />

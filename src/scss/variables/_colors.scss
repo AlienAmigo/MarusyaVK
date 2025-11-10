@@ -1,0 +1,19 @@
+:root {
+  --cl-main: #dc5dfc;
+
+  --cl-bg-secondary: #393b3c;
+
+  --cl-grey: #616161;
+
+
+  --cl-content-disabled: rgba(255, 255, 255, 0.5);
+;
+
+  --cl-black: #000;
+  --cl-white: #fff;
+  --cl-trans: rgba(255, 255, 255, 0);
+
+  --cl-page-bg:
+    linear-gradient(180deg, var(--cl-black) 0%, rgba(39, 36, 36, 0.7) 100%),
+    linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%);
+}

@@ -1,0 +1,29 @@
+:root {
+  *,
+  *::after,
+  *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  main {
+    flex-grow: 1;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    object-fit: cover;
+    height: auto;
+  }
+}

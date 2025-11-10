@@ -1,0 +1,14 @@
+:root {
+  --z-layer-overlay: 50;
+  --z-fixed-page: 100;
+  --z-layer-dropdown: 150;
+  --z-side-filter: 170;
+  --z-modal-under-header: 180;
+  --z-layer-header: 200;
+  --z-layer-header-dropdown: calc(var(--z-layer-header) + 50); // 250
+  --z-layer-modal: 500;
+  --z-layer-modal-dropdown: calc(var(--z-layer-modal) + 50); // 550;
+  --z-layer-over-modal: 700;
+  --z-layer-up-button: 1500;
+  --z-layer-notification: 2500;
+}

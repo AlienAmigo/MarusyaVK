@@ -1,5 +1,6 @@
 :root {
-  --anim-time: 0.35s;
-  --anim-transition: var(--anim-time) ease-in;
+  --time-020: 0.20s;
+  --time-035: 0.35s;
+  --anim-transition: var(--time-035) ease-in;
   --anim-opacity: 0.65;
 }

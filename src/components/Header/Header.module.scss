@@ -63,15 +63,30 @@
   }
 
   &__nav-link {
+    position: relative;
     padding: 0.5rem 0;
     text-decoration: none;
     color: inherit;
 
-    border-bottom: 1px solid var(--cl-trans);
-    transition: all var(--anim-transition);
+    &:before {
+      @include mx.pseudo();
+      bottom: 0;
+      left: 50%;
+      width: 100%;
+      max-width: 0;
+      height: 1px;
+      background-color: var(--cl-main);
+      transform: translateX(-50%);
+      transition: all var(--time-020) ease-in-out;
+    }
+
+    //border-bottom: 1px solid var(--cl-trans);
 
     &--active {
-      border-bottom: 1px solid var(--cl-main);
+      &:before {
+        max-width: 100%;
+      }
+      //border-bottom: 1px solid var(--cl-main);
     }
   }
 

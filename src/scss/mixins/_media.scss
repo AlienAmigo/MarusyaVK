@@ -1,32 +1,31 @@
 @use '../variables/breakpoints' as bp;
 
-
 @mixin vp-360 {
-  @media (min-width: bp.$screen-xxs) {
+  @media (max-width: calc(#{bp.$screen-xxs} - 1px)) {
     @content;
   }
 }
 
 @mixin vp-768 {
-  @media (min-width: bp.$screen-sm) {
+  @media (max-width: calc(#{bp.$screen-sm} - 1px)) {
     @content;
   }
 }
 
 @mixin vp-992 {
-  @media (min-width: bp.$screen-md) {
+  @media (max-width: calc(#{bp.$screen-md} - 1px)) {
     @content;
   }
 }
 
 @mixin vp-1024 {
-  @media (min-width: bp.$screen-lg) {
+  @media (max-width: calc(#{bp.$screen-lg} - 1px)) {
     @content;
   }
 }
 
-@mixin vp-1304 {
-  @media (min-width: $vp-desktop-lg) {
+@mixin vp-1440 {
+  @media (max-width: calc(#{bp.$screen-xl} - 1px)) {
     @content;
   }
 }

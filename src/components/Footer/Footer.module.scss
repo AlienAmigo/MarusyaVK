@@ -1,2 +1,19 @@
+@use '@scss/mixins' as mx;
+
 .Footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 2.625rem;
+  padding-bottom: 2.625rem;
+
+  @include mx.vp-768 {
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    min-height: 5.25rem;
+  }
 }

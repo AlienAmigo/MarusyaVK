@@ -1,3 +1,37 @@
+@use '@scss/mixins' as mx;
+
 .SocialButton {
-  &__icon-wrapper {}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--cl-white);
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  @include mx.vp-768 {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    max-width: 1.125rem;
+    height: max-content;
+    max-height: 1.125rem;
+
+    svg {
+      @include mx.vp-768 {
+        transform: scale(0.66666);
+      }
+    }
+  }
 }

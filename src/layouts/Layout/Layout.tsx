@@ -15,12 +15,12 @@ export const Layout: React.FC<ILayoutProps> = ({ className, children }) => {
   const classes = classNames(st.Layout, className);
 
   return (
-    <main className={classes}>
+    <div className={classes}>
       <Header />
       <main className={'container'}>
         <Outlet context={children} />
       </main>
       <Footer />
-    </main>
+    </div>
   );
 };

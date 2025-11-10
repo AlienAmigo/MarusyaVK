@@ -17,7 +17,9 @@ export const Layout: React.FC<ILayoutProps> = ({ className, children }) => {
   return (
     <main className={classes}>
       <Header />
-      <Outlet context={children} />
+      <main className={'container'}>
+        <Outlet context={children} />
+      </main>
       <Footer />
     </main>
   );

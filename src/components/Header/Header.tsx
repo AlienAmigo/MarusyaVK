@@ -1,7 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import LogoImg from './assets/logo.svg?react';
 
 import { routesEnum } from '@/routes';
 
@@ -12,27 +13,31 @@ export interface IHeader {
 }
 
 export const Header: React.FC<IHeader> = ({ className }) => {
-  const classes = classNames(st.Header, className);
+  const classes = classNames('container', st.Header, className);
+
+  const linkClasses = ({ isActive }) => classNames(st['Header__nav-link'], {[st['Header__nav-link--active']]: isActive});
 
   return (
     <header className={classes}>
-      <Link to={routesEnum.HOME}></Link>
+      <NavLink to={routesEnum.HOME}>
+        <LogoImg className={st.Header__logo} />
+      </NavLink>
       <nav className={st.Header__nav}>
         <ul className={st['Header__nav-list']}>
           <li className={st['Header__nav-item']}>
-            <Link to={routesEnum.HOME} className={st['Header__nav-link']}>
+            <NavLink to={routesEnum.HOME} className={linkClasses}>
               Главная
-            </Link>
+            </NavLink>
           </li>
           <li className={st['Header__nav-item']}>
-            <Link to={routesEnum.GENRES} className={st['Header__nav-link']}>
+            <NavLink to={routesEnum.GENRES} className={linkClasses}>
               Жанры
-            </Link>
+            </NavLink>
           </li>
           <li className={st['Header__nav-item']}>
-            <Link to={routesEnum.PROFILE} className={st['Header__nav-link']}>
+            <NavLink to={routesEnum.PROFILE} className={st['Header__nav-link']}>
               Profile
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

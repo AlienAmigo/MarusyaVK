@@ -1,8 +1,46 @@
 .Header {
-  &__nav {}
+  display: flex;
+  padding-top: 24px;
+  padding-bottom: 24px;
 
-  &__nav-list {}
+  &__logo {
+    max-width: 144px;
+    max-height: 32px;
+    object-fit: contain;
+    object-position: center;
+  }
 
-  &__nav-item {}
+  &__nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__nav-list {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__nav-item {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: var(--cl-white);
+  }
+
+
+  &__nav-link {
+    padding: 0.5rem 0;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid var(--cl-trans);
+    transition: all 0.3s ease-in-out;
+
+    &--active {
+      border-bottom: 1px solid var(--cl-main);
+    }
+  }
 
 }

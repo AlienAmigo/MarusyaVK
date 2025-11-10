@@ -1,0 +1,13 @@
+@use '../variables/breakpoints' as bp;
+@use '../mixins' as mx;
+
+.container {
+  width: 100%;
+  max-width: bp.$screen-xl;
+  margin: 0 auto;
+  padding: 0 80px;
+
+  @include mx.vp-768 {
+    padding: 0 20px;
+  }
+}

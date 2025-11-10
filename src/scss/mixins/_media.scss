@@ -1,0 +1,32 @@
+@use '../variables/breakpoints' as bp;
+
+
+@mixin vp-360 {
+  @media (min-width: bp.$screen-xxs) {
+    @content;
+  }
+}
+
+@mixin vp-768 {
+  @media (min-width: bp.$screen-sm) {
+    @content;
+  }
+}
+
+@mixin vp-992 {
+  @media (min-width: bp.$screen-md) {
+    @content;
+  }
+}
+
+@mixin vp-1024 {
+  @media (min-width: bp.$screen-lg) {
+    @content;
+  }
+}
+
+@mixin vp-1304 {
+  @media (min-width: $vp-desktop-lg) {
+    @content;
+  }
+}

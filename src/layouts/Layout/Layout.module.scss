@@ -1,6 +1,7 @@
 .Layout {
   display: flex;
   flex-direction: column;
+  flex: 1;
   min-width: 100vw;
   min-height: 100vh;
   background: var(--cl-page-bg);

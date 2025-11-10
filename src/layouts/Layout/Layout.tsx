@@ -15,10 +15,10 @@ export const Layout: React.FC<ILayoutProps> = ({ className, children }) => {
   const classes = classNames(st.Layout, className);
 
   return (
-    <div className={classes}>
+    <main className={classes}>
       <Header />
       <Outlet context={children} />
       <Footer />
-    </div>
+    </main>
   );
 };

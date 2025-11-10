@@ -4,4 +4,4 @@ export const routesEnum = {
   GENRE: '/genre/:id',
   FILM: '/film/:id',
   PROFILE: '/profile',
-}
+};

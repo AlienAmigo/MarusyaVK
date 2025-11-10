@@ -11,7 +11,7 @@
   cursor: pointer;
 
   &:hover {
-    opacity: 0.75;
+    opacity: var(--anim-opacity);
   }
 
   @include mx.vp-768 {

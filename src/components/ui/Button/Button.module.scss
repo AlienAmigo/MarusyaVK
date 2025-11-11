@@ -1,2 +1,30 @@
 .Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  height: max-content;
+  padding: 1rem 3rem;
+  border-radius: 1.75rem;
+  outline: 0;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  color: var(--cl-white );
+
+  &--variant {
+    // PRIMARY
+    &--primary {
+      background-color: var(--cl-bg-secondary);
+      border: 1px solid var(--cl-content-placeholder);
+
+      &:hover,
+      &:focus {
+        border-color: var(--cl-transparent);
+        background-color: var();
+      }
+    }
+    // SECONDARY
+    &--secondary {}
+  }
 }

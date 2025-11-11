@@ -1,0 +1,11 @@
+.Logo {
+  &--theme {
+    &--dark {
+      color: var(--cl-white);
+    }
+
+    &--light {
+      color: var(--cl-black);
+    }
+  }
+}

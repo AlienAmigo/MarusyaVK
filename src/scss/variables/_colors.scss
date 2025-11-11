@@ -1,14 +1,18 @@
 :root {
   --cl-main: #dc5dfc;
+  --cl-design1: #67A5EB;
+
 
   --cl-bg-secondary: #393b3c;
 
   --cl-grey: #616161;
 
+  --cl-content-placeholder: rgba(0, 0, 0, 0.4);
   --cl-content-disabled: rgba(255, 255, 255, 0.5);
+
   --cl-black: #000;
   --cl-white: #fff;
-  --cl-trans: rgba(255, 255, 255, 0);
+  --cl-transparent: rgba(255, 255, 255, 0);
 
   --cl-page-bg:
     linear-gradient(180deg, var(--cl-black) 0%, rgba(39, 36, 36, 0.7) 100%),

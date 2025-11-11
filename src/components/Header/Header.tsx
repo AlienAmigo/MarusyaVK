@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { NavLink } from 'react-router-dom';
 import { SearchField } from '@components/SearchField';
-import LogoImg from './assets/logo.svg';
+import { Logo } from '@components/ui/Logo'
 import GernesImg from './assets/gernes.svg?react';
 import SearchImg from './assets/search.svg?react';
 import UserImg from './assets/user.svg?react';
@@ -28,11 +28,9 @@ export const Header: React.FC<IHeader> = ({ className }) => {
   return (
     <header className={classes}>
       <NavLink to={routesEnum.HOME} className={st['Header__logo-link']}>
-        <img
-          src={LogoImg}
+        <Logo
           width={144}
           height={32}
-          alt="Маруся ВК. Логотип"
           className={st.Header__logo}
         />
       </NavLink>

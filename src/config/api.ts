@@ -10,20 +10,8 @@ export const PROFILE_URL = '/profile';
 export const FAVORITES_URL = '/favorites';
 
 // MOVIE
-GET
-/movie
-Получение фильмов по заданным фильтрам
-GET
-/movie/top10
-Получение фильмов с наивысшим рейтингом
-GET
-/movie/genres
-Получение жанров
-GET
-/movie/{movieId}
-Получение фильма по id
-GET
-/movie/random
-Получение случайного фильма
-
- */
+export const MOVIE_URL = '/movie';
+export const MOVIE_TOP_10_URL = '/movie/top10';
+export const MOVIE_BY_GENRE_URL = '/movie/genres';
+export const MOVIE_BY_ID_URL = (movieId: number) => `/movie/${movieId}`;
+export const MOVIE_RANDOM_URL = '/movie/random';

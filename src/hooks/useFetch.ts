@@ -26,14 +26,11 @@ export const useFetch = <T = unknown>(url: string = '', props: AxiosRequestConfi
     }
   }, [url, JSON.stringify(props)]); // Зависимости для useCallback
 
-  useEffect(() => {
-    fetch();
-  }, [fetch]);
 
   // Функция для ручного перезапроса
   const refetch = useCallback(() => {
     fetch();
-  }, [fetch]);
+  }, []);
 
-  return { isLoading, error, data, refetch };
+  return { state: { isLoading, error, data }, fetch, refetch };
 };

@@ -1,8 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import st from './Home.module.scss';
 import { useGetRandomMovie } from '@/api/useGetRandomMovie';
+
+import st from './Home.module.scss';
 
 export interface IHome {
   className?: string;
@@ -10,8 +11,14 @@ export interface IHome {
 
 const Home: React.FC<IHome> = ({ className }) => {
   const classes = classNames(st.Home, className);
-  const { data }  = useGetRandomMovie();
-  return <div className={classes}>Home</div>;
+  const { data, refetch  }  = useGetRandomMovie();
+
+  console.log('data', data);
+
+  return <div className={classes}>
+    <h1 className="visually-hidden">Главная</h1>
+
+  </div>;
 };
 
 export default Home;

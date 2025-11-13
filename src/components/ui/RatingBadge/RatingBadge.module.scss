@@ -1,13 +1,19 @@
 @use '@scss/mixins' as mx;
 
 .RatingBadge {
+  --rating-badge-bg-color: var(--rating-badge-custom-bg-color, var(--cl-rating-grey));
+
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
+  width: max-content;
+  height: max-content;
   padding: 0.5rem 0.75rem;
   border-radius: 1rem;
+  background-color: var(--rating-badge-bg-color);
   color: var(--cl-white);
+  font-weight: 700;
   font-size: 1.125rem;
   line-height: 1.5rem;
 

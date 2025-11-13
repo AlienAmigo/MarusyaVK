@@ -1,14 +1,20 @@
 :root {
   --cl-main: #dc5dfc;
-  --cl-design1: #67A5EB;
-
+  --cl-design1: #67a5eb;
 
   --cl-bg-secondary: #393b3c;
 
   --cl-grey: #616161;
 
   --cl-content-placeholder: rgba(0, 0, 0, 0.4);
+  --cl-content-primary: rgba(255, 255, 255, 1);
+  --cl-content-secondary: rgba(255, 255, 255, 0.7);
   --cl-content-disabled: rgba(255, 255, 255, 0.5);
+
+  --cl-rating-gold: #a59400;
+  --cl-rating-green: #308e21;
+  --cl-rating-grey: #777777;
+  --cl-rating-red: #c82020;
 
   --cl-black: #000;
   --cl-white: #fff;

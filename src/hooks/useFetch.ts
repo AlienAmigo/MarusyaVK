@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { AxiosRequestConfig } from 'axios';
 import axiosInstance from '@/services/axiosInstance';
 
@@ -25,7 +25,6 @@ export const useFetch = <T = unknown>(url: string = '', props: AxiosRequestConfi
       setIsLoading(false);
     }
   }, [url, JSON.stringify(props)]); // Зависимости для useCallback
-
 
   // Функция для ручного перезапроса
   const refetch = useCallback(() => {

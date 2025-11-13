@@ -30,9 +30,9 @@ export interface IMovie {
   title: string;
   originalTitle: string;
   language: string;
-  relaseYear: number;
+  releaseYear: number;
   releaseDate: string;
-  genres: string[];
+  genres?: string[];
   plot: string;
   runtime: number;
   budget: string;

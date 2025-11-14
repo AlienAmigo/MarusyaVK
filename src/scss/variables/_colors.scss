@@ -1,13 +1,22 @@
 :root {
+  // util colors
+  --cl-black: #000;
+  --cl-white: #fff;
+  --cl-transparent: rgba(255, 255, 255, 0);
+
   --cl-main: #dc5dfc;
-  --cl-design1: #67a5eb;
+  --cl-accent: #67a5eb;
+  --cl-accent-disabled: #45526e;
 
+  --cl-bg-primary: var(--cl-white);
   --cl-bg-secondary: #393b3c;
+  --cl-bg-disabled: #747474;
 
+  --cl-grey-mid: #393b3c;
   --cl-grey: #616161;
 
   --cl-content-placeholder: rgba(0, 0, 0, 0.4);
-  --cl-content-primary: rgba(255, 255, 255, 1);
+  --cl-content-primary: var(--cl-white);
   --cl-content-secondary: rgba(255, 255, 255, 0.7);
   --cl-content-disabled: rgba(255, 255, 255, 0.5);
 
@@ -15,10 +24,6 @@
   --cl-rating-green: #308e21;
   --cl-rating-grey: #777777;
   --cl-rating-red: #c82020;
-
-  --cl-black: #000;
-  --cl-white: #fff;
-  --cl-transparent: rgba(255, 255, 255, 0);
 
   --cl-page-bg:
     linear-gradient(180deg, var(--cl-black) 0%, rgba(39, 36, 36, 0.7) 100%),

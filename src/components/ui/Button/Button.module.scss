@@ -4,13 +4,25 @@
   justify-content: center;
   width: max-content;
   height: max-content;
+  min-height: 3.625rem;
   padding: 1rem 3rem;
   border-radius: 1.75rem;
+  border: none;
   outline: 0;
   font-weight: 700;
   font-size: 1.125rem;
   line-height: 1.5rem;
-  color: var(--cl-white );
+  color: var(--cl-white);
+  cursor: pointer;
+
+  &--is-icon {
+    padding: 1rem 1.375rem;
+    color: var(--cl-content-primary);
+
+    &:hover,
+    &:focus {
+    }
+  }
 
   &--variant {
     // PRIMARY
@@ -20,11 +32,48 @@
 
       &:hover,
       &:focus {
-        border-color: var(--cl-transparent);
-        background-color: var();
+        border-color: var(--cl-content-placeholder);
+        background-color: var(--cl-bg-disabled);
+        color: var(--cl-content-disabled);
       }
     }
+
     // SECONDARY
-    &--secondary {}
+    &--secondary {
+      background-color: var(--cl-accent);
+      border: 1px solid var(--cl-accent);
+
+      &:hover,
+      &:focus {
+        background-color: var(--cl-accent-disabled);
+        border: 1px solid var(--cl-accent-disabled);
+        color: var(--cl-content-disabled);
+      }
+    }
+
+    // TERTIARY
+    &--tertiary {
+      background-color: var(--cl-content-primary);
+      color: var(--cl-black);
+
+      &:hover,
+      &:focus {
+        background-color: var(--cl-accent-disabled);
+        color: var(--cl-content-disabled);
+      }
+    }
+
+    // QUATERNARY
+    &--quaternary {
+      background-color: var(--cl-grey-mid);
+      border: 1px solid var(--cl-content-placeholder);
+
+      &:hover,
+      &:focus {
+        border-color: var(--cl-content-placeholder);
+        background-color: var(--cl-bg-disabled);
+        color: var(--cl-content-disabled);
+      }
+    }
   }
 }

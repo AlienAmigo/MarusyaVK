@@ -2,15 +2,19 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { RatingBadge } from '@components/ui/RatingBadge';
+import { Button } from '@components/ui/Button';
+import RefreshImg from './assets/refresh.svg?react';
+import LikeImg from './assets/like.svg?react';
 
 import { formatMinutes, isCurrentLanguage } from '@/helpers';
 
-import { IMovie } from '@/types';
+import { IMovie, VariantEnum } from '@/types';
 
 import st from './MovieDetails.module.scss';
 
 export interface IMovieDetailsProps extends Partial<IMovie> {
   className?: string;
+  onRefresh?: () => void;
 }
 
 export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
@@ -27,6 +31,7 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
     title,
     tmdbRating,
     trailerUrl,
+    onRefresh,
   } = props;
 
   const classes = classNames(st.MovieDetails, className);
@@ -50,8 +55,21 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
         </div>
         <h2 className={st.MovieDetails__title}>{titleText}</h2>
         <p className={st.MovieDetails__plot}>{plot}</p>
-        <div className="buttons">
-
+        <div className={st.MovieDetails__buttons}>
+          <Button variant={VariantEnum.SECONDARY} onClick={() => {}}>
+            Трейлер
+          </Button>
+          <Button variant={VariantEnum.QUATERNARY} onClick={() => {}}>
+            О фильме
+          </Button>
+          <Button isIcon variant={VariantEnum.PRIMARY} onClick={() => {}}>
+            <LikeImg />
+          </Button>
+          {onRefresh && (
+            <Button isIcon variant={VariantEnum.PRIMARY} className={'hidden-sm'} onClick={onRefresh}>
+              <RefreshImg />
+            </Button>
+          )}
         </div>
       </div>
       <div className={st['MovieDetails__poster-wrapper']}>

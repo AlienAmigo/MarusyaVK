@@ -1,14 +1,24 @@
-@use "@scss/mixins" as mx;
+@use '@scss/mixins' as mx;
 
 .MovieDetails {
   display: grid;
   align-items: center;
   grid-template-columns: 46.875fr 53.125fr;
 
+  @include mx.vp-768 {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+  }
+
   &__info {
     display: flex;
     flex-direction: column;
     gap: 1.125rem;
+
+    @include mx.vp-768 {
+      gap: 0.75rem;
+    }
   }
 
   &__header {
@@ -29,6 +39,11 @@
     font-size: 1.125rem;
     line-height: 1.5rem;
     color: var(--cl-content-secondary);
+
+    @include mx.vp-768 {
+      font-size: 0.875rem;
+      line-height: 1.125rem;
+    }
   }
 
   &__title {
@@ -39,6 +54,11 @@
     font-size: 3rem;
     line-height: 3.5rem;
     color: var(--cl-content-primary);
+
+    @include mx.vp-768 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
   }
 
   &__plot {
@@ -47,21 +67,30 @@
     font-size: 1.5rem;
     line-height: 2rem;
     color: var(--cl-content-secondary);
+
+    @include mx.vp-768 {
+      font-size: 1.125rem;
+      line-height: 1.5rem;
+    }
   }
 
   &__poster-wrapper {
     max-height: 552px;
     overflow: hidden;
     border-radius: 1rem;
+
+    @include mx.vp-768 {
+      width: 100%;
+      height: 234px;
+    }
   }
 
   &__poster {
     width: 100%;
     height: 100%;
-    object-position: center center;
+    object-position: top center;
     object-fit: cover;
   }
-
 
   &__buttons {
     display: flex;

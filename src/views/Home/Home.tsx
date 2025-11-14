@@ -15,7 +15,7 @@ export interface IHome {
 }
 
 const Home: React.FC<IHome> = ({ className }) => {
-  const { data, isLoading: isMovieLoading } = useGetRandomMovie();
+  const { data, isLoading: isMovieLoading, refetch } = useGetRandomMovie();
 
   const classes = classNames(st.Home, className);
 
@@ -24,7 +24,7 @@ const Home: React.FC<IHome> = ({ className }) => {
   return (
     <div className={classes}>
       <h1 className="visually-hidden">Главная</h1>
-      {isMovieLoading ? <Loader /> : data ? <MovieDetails {...data} /> : <></>}
+      {isMovieLoading ? <Loader /> : data ? <MovieDetails {...data} onRefresh={refetch} /> : <></>}
     </div>
   );
 };

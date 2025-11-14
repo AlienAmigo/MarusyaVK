@@ -13,11 +13,12 @@ export interface ILayoutProps extends React.PropsWithChildren {
 
 export const Layout: React.FC<ILayoutProps> = ({ className, children }) => {
   const classes = classNames(st.Layout, className);
+  const mainClasses = classNames(st.Layout__main, 'container');
 
   return (
     <div className={classes}>
       <Header />
-      <main className={'container'}>
+      <main className={mainClasses}>
         <Outlet context={children} />
       </main>
       <Footer />

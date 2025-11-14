@@ -5,4 +5,10 @@
   min-width: 100vw;
   min-height: 100vh;
   background: var(--cl-page-bg);
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
 }

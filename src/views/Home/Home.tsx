@@ -24,7 +24,13 @@ const Home: React.FC<IHome> = ({ className }) => {
   return (
     <div className={classes}>
       <h1 className="visually-hidden">Главная</h1>
-      {isMovieLoading ? <Loader /> : data ? <MovieDetails {...data} onRefresh={refetch} /> : <></>}
+      {isMovieLoading ? (
+        <Loader fit />
+      ) : data ? (
+        <MovieDetails {...data} onRefresh={refetch} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

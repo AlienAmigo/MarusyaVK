@@ -10,6 +10,7 @@
 
   --cl-bg-primary: var(--cl-white);
   --cl-bg-secondary: #393b3c;
+  --cl-bg-active: #6a5dc2;
   --cl-bg-disabled: #747474;
   --cl-bg-frame: #616161;
 
@@ -21,6 +22,9 @@
   --cl-content-secondary: rgba(255, 255, 255, 0.7);
   --cl-content-disabled: rgba(255, 255, 255, 0.5);
 
+  --cl-border-primary: rgba(255, 255, 255, 0.25);
+
+
   --cl-rating-gold: #a59400;
   --cl-rating-green: #308e21;
   --cl-rating-grey: #777777;
@@ -29,4 +33,7 @@
   --cl-page-bg:
     linear-gradient(180deg, var(--cl-black) 0%, rgba(39, 36, 36, 0.7) 100%),
     linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%);
+
+  --bxsh-basic: 0 0 80px 0 #ffffff54;
+  --bxsh-basic-sm: 0 0 50px 0 #ffffff54;
 }

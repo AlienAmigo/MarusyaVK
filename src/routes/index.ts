@@ -1,4 +1,4 @@
-export enum basicRoutes {
+export enum basicRoutesEnum {
   HOME = '/',
   GENRES = '/genres',
   GENRE = '/genre',
@@ -7,9 +7,9 @@ export enum basicRoutes {
 }
 
 export enum routesEnum {
-  HOME = basicRoutes.HOME,
-  GENRES = basicRoutes.GENRES,
-  GENRE = `${basicRoutes.GENRE}/:id`,
-  FILM = `${basicRoutes.FILM}/:id`,
-  PROFILE = basicRoutes.PROFILE,
+  HOME = basicRoutesEnum.HOME,
+  GENRES = basicRoutesEnum.GENRES,
+  GENRE = `${basicRoutesEnum.GENRE}/:id`,
+  FILM = `${basicRoutesEnum.FILM}/:id`,
+  PROFILE = basicRoutesEnum.PROFILE,
 }

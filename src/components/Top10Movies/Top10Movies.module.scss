@@ -1,2 +1,62 @@
+@use '@scss/mixins' as mx;
+
 .Top10Movies {
+  --number-offset: 0.75rem;
+
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 0 7.5rem;
+
+  @include mx.vp-768 {
+    padding: 2rem 0 0;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: 700;
+
+    @include mx.vp-768 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, var(--movie-card-width));
+    grid-template-rows: repeat(auto-fit, var(--movie-card-height));
+    column-gap: 40px;
+    row-gap: 64px;
+    padding-top: 4rem;
+    list-style: none;
+    counter-reset: count;
+
+    @include mx.vp-768 {
+      @include mx.scroll-style(0.625rem, var(--cl-bg-disabled), var(--cl-transparent));
+      display: flex;
+      margin-left: calc(var(--container-padding-sm) * -1);
+      padding: 2.5rem var(--container-padding-sm) 3rem;
+      overflow-x: auto;
+    }
+  }
+
+  &__list-item {
+    position: relative;
+    counter-increment: count;
+
+    &::before {
+      @include mx.pseudo();
+      content: counter(count);
+      top: -0.75rem;
+      left: -0.75rem;
+      padding: 0.5rem 1.5rem;
+      background-color: var(--cl-bg-primary);
+      border-radius: 3.125rem;
+      color: var(--cl-bg-active);
+      font-size: 1.5rem;
+      line-height: 2rem;
+      font-weight: 700;
+    }
+  }
 }

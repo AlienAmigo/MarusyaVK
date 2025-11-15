@@ -10,7 +10,7 @@ import { formatMinutes, isCurrentLanguage } from '@/helpers';
 
 import { useNavigate } from 'react-router-dom';
 
-import { basicRoutes } from '@/routes';
+import { basicRoutesEnum } from '@/routes';
 
 import { IMovie, VariantEnum } from '@/types';
 
@@ -49,11 +49,11 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
   const genresText = genres?.join(', ');
 
   const handleOnShowTrailer = () => {};
-  const handleOnShowFilmDetails = () => navigate(`${basicRoutes.FILM}/${id}`);
+  const handleOnShowFilmDetails = () => navigate(`${basicRoutesEnum.FILM}/${id}`);
   const handleOnLikeBtnClick = () => {};
 
   return (
-    <div className={classes}>
+    <section className={classes}>
       <div className={st.MovieDetails__info}>
         <div className={st.MovieDetails__header}>
           <RatingBadge rating={tmdbRating || 0} />
@@ -90,6 +90,6 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
       <div className={st['MovieDetails__poster-wrapper']}>
         <img className={st.MovieDetails__poster} alt={title} src={posterUrl} />
       </div>
-    </div>
+    </section>
   );
 };

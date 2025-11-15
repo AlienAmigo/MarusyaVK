@@ -1,2 +1,34 @@
+@use '@scss/mixins' as mx;
+
 .MovieCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--movie-card-width);
+  height: var(--movie-card-height);
+  border-radius: 1rem;
+  border: 1px solid var(--cl-border-primary);
+  overflow: hidden;
+  box-shadow: var(--bxsh-basic);
+
+  @include mx.vp-768 {
+    box-shadow: var(--bxsh-basic-sm);
+  }
+
+  &:hover, &:focus {
+    border-color: var(--cl-bg-active);
+    box-shadow: none;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+
+    &--loading {
+      display: none;
+    }
+  }
 }

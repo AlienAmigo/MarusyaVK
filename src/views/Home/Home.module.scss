@@ -2,4 +2,14 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+
+  &__random-movie {
+    display: flex;
+    flex-direction: column;
+    height: 552px;
+  }
+
+  &__top10 {
+
+  }
 }

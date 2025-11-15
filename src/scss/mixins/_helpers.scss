@@ -99,11 +99,15 @@
 }
 
 // стилизация скролла эл-та
-@mixin scroll-style($width: 10px, $scrollbar-color: rgba(0, 0, 0, 0)) {
+@mixin scroll-style(
+  $width: 10px,
+  $scrollbar-color: rgba(0, 0, 0, 0),
+  $scrollbar-thumb: rgba(0, 0, 0, 0.4)
+) {
   // стилизация скролла
   // Mozilla
-  scrollbar-color: $scrollbar-color rgba(0, 0, 0, 0.4);
-  scrollbar-width: thin;
+  scrollbar-color: $scrollbar-color $scrollbar-thumb;
+  scrollbar-width: auto;
   // Webkit
   &::-webkit-scrollbar {
     width: $width;
@@ -112,7 +116,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: $scrollbar-thumb;
   }
 }
 

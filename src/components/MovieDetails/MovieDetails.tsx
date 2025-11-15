@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import { ImageWithLoader } from '@components/ui/ImageWithLoader';
 import { RatingBadge } from '@components/ui/RatingBadge';
 import { Button } from '@components/ui/Button';
 import RefreshImg from './assets/refresh.svg?react';
@@ -88,7 +89,8 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
         </div>
       </div>
       <div className={st['MovieDetails__poster-wrapper']}>
-        <img className={st.MovieDetails__poster} alt={title} src={posterUrl} />
+        <ImageWithLoader className={st.MovieDetails__poster} alt={title} src={posterUrl} />
+        {/*<img className={st.MovieDetails__poster} alt={title} src={posterUrl} />*/}
       </div>
     </section>
   );

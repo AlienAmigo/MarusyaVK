@@ -13,7 +13,7 @@ export interface ITop10MoviesProps {
 }
 
 export const Top10Movies: React.FC<ITop10MoviesProps> = ({ className }) => {
-  const { data, isLoading, error } = useGetTop10Movies();
+  const { data, isLoading } = useGetTop10Movies();
 
   console.log('Top10Movies', data);
 

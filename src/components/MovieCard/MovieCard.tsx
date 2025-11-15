@@ -22,7 +22,7 @@ export const MovieCard: React.FC<IMovieCardProps> = ({ id, posterUrl, alt, class
 
   return (
     <Link to={movieLink} className={classes}>
-      <ImageWithLoader className={st.s} src={posterUrl} alt={alt} />
+      <ImageWithLoader className={st.MovieCard__img} src={posterUrl} alt={alt} />
     </Link>
   );
 };

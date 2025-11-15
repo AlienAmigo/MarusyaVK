@@ -8,6 +8,10 @@ import LikeImg from './assets/like.svg?react';
 
 import { formatMinutes, isCurrentLanguage } from '@/helpers';
 
+import { useNavigate } from 'react-router-dom';
+
+import { basicRoutes } from '@/routes';
+
 import { IMovie, VariantEnum } from '@/types';
 
 import st from './MovieDetails.module.scss';
@@ -34,6 +38,8 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
     onRefresh,
   } = props;
 
+  const navigate = useNavigate();
+
   const classes = classNames(st.MovieDetails, className);
 
   const titleText = language && isCurrentLanguage(language) ? originalTitle : title;
@@ -41,6 +47,10 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
   const runtimeText = runtime ? formatMinutes(runtime) : '';
 
   const genresText = genres?.join(', ');
+
+  const handleOnShowTrailer = () => {};
+  const handleOnShowFilmDetails = () => navigate(`${basicRoutes.FILM}/${id}`);
+  const handleOnLikeBtnClick = () => {};
 
   return (
     <div className={classes}>
@@ -56,17 +66,22 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
         <h2 className={st.MovieDetails__title}>{titleText}</h2>
         <p className={st.MovieDetails__plot}>{plot}</p>
         <div className={st.MovieDetails__buttons}>
-          <Button variant={VariantEnum.SECONDARY} onClick={() => {}}>
+          <Button variant={VariantEnum.SECONDARY} onClick={handleOnShowTrailer}>
             Трейлер
           </Button>
-          <Button variant={VariantEnum.QUATERNARY} onClick={() => {}}>
+          <Button variant={VariantEnum.QUATERNARY} onClick={handleOnShowFilmDetails}>
             О фильме
           </Button>
-          <Button isIcon variant={VariantEnum.PRIMARY} onClick={() => {}}>
+          <Button isIcon variant={VariantEnum.PRIMARY} onClick={handleOnLikeBtnClick}>
             <LikeImg />
           </Button>
           {onRefresh && (
-            <Button isIcon variant={VariantEnum.PRIMARY} className={'hidden-sm'} onClick={onRefresh}>
+            <Button
+              isIcon
+              variant={VariantEnum.PRIMARY}
+              className={'hidden-sm'}
+              onClick={onRefresh}
+            >
               <RefreshImg />
             </Button>
           )}

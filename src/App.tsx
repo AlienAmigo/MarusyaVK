@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { Layout } from '@/layouts/Layout';
-import { Loader } from '@components/ui/Loader'
+import { Loader } from '@components/ui/Loader';
 
 import { routesEnum } from './routes';
 
@@ -14,7 +14,7 @@ const App = () => {
   const Profile = lazy(() => import('./views/Profile'));
   const Page404 = lazy(() => import('./views/Page404'));
 
-  const SuspenseFallback = () => <><Loader /></>;
+  const SuspenseFallback = () => <Loader stretch />;
 
   const SuspenseElement = (element: React.ReactElement) => (
     <Suspense fallback={<SuspenseFallback />}>{element}</Suspense>

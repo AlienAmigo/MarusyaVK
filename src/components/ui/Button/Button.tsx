@@ -22,7 +22,7 @@ export const Button: React.FC<IButtonProps> = props => {
   );
 
   return (
-    <button className={classes} {...buttonProps}>
+    <button {...buttonProps} className={classes} type={buttonProps.type || 'button'}>
       {children}
     </button>
   );

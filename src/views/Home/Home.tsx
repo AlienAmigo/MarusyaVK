@@ -6,7 +6,7 @@ import { MovieDetails } from '@components/MovieDetails';
 import { Loader } from '@components/ui/Loader';
 
 //  hooks
-import { useGetRandomMovie } from '@/api/useGetRandomMovie';
+import { useGetRandomMovie } from '@hooks/api/useGetRandomMovie';
 
 import st from './Home.module.scss';
 
@@ -25,7 +25,7 @@ const Home: React.FC<IHome> = ({ className }) => {
     <div className={classes}>
       <h1 className="visually-hidden">Главная</h1>
       {isMovieLoading ? (
-        <Loader fit />
+        <Loader stretch />
       ) : data ? (
         <MovieDetails {...data} onRefresh={refetch} />
       ) : (

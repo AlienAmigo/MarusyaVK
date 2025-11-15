@@ -37,7 +37,7 @@ export const RatingBadge: React.FC<IRatingBadgeProps> = ({ rating, className }) 
   return (
     <div className={classes} style={customStyleProps}>
       <StarImg className={st.RatingBadge__icon} />
-      {ratingFixed}
+      {ratingFixed.toFixed(1).toString()}
     </div>
   );
 };

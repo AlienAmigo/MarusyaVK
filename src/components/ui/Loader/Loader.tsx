@@ -5,11 +5,11 @@ import st from './Loader.module.scss';
 
 export interface ILoaderProps {
   className?: string;
-  fit?: boolean;
+  stretch?: boolean;
 }
 
-export const Loader: React.FC<ILoaderProps> = ({ fit, className }) => {
-  const classes = classNames(st.Loader, { [st['Loader--fit']]: fit }, className);
+export const Loader: React.FC<ILoaderProps> = ({ stretch, className }) => {
+  const classes = classNames(st.Loader, { [st['Loader--stretch']]: stretch }, className);
 
   return (
     <div className={classes}>

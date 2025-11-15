@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import { Link } from 'react-router-dom';
-import { Loader } from '@components/ui/Loader';
+import { ImageWithLoader } from '@components/ui/ImageWithLoader';
 
 import { basicRoutesEnum } from '@/routes';
 
@@ -16,37 +16,13 @@ export interface IMovieCardProps {
 }
 
 export const MovieCard: React.FC<IMovieCardProps> = ({ id, posterUrl, alt, className }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-
-  const handleLoad = () => {
-    setIsLoading(false);
-  };
-
-  const handleError = () => {
-    setIsLoading(false);
-    setHasError(true);
-  };
-
-  const movieLink = `${basicRoutesEnum}/${id}`;
+  const movieLink = `${basicRoutesEnum.FILM}/${id}`;
 
   const classes = classNames(st.MovieCard, className);
-  const imgClasses = classNames(st.MovieCard__img, { [st['MovieCard__img--loading']]: isLoading });
 
   return (
     <Link to={movieLink} className={classes}>
-      {isLoading && <Loader stretch />}
-      {hasError ? (
-        <span className={st.MovieCard__error}>Не удалось загрузить изображение</span>
-      ) : (
-        <img
-          className={imgClasses}
-          src={posterUrl}
-          alt={alt}
-          onLoad={handleLoad}
-          onError={handleError}
-        />
-      )}
+      <ImageWithLoader className={st.s} src={posterUrl} alt={alt} />
     </Link>
   );
 };

@@ -24,13 +24,13 @@ export interface IMovieDetailsProps extends Partial<IMovie> {
 
 export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
   const {
+    backdropUrl,
     className,
     genres,
     id,
     language,
     originalTitle,
     plot,
-    posterUrl,
     releaseYear,
     runtime,
     title,
@@ -89,8 +89,7 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
         </div>
       </div>
       <div className={st['MovieDetails__poster-wrapper']}>
-        <ImageWithLoader className={st.MovieDetails__poster} alt={title} src={posterUrl} />
-        {/*<img className={st.MovieDetails__poster} alt={title} src={posterUrl} />*/}
+        <ImageWithLoader className={st.MovieDetails__poster} alt={title} src={backdropUrl} />
       </div>
     </section>
   );

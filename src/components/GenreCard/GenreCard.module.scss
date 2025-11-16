@@ -1,0 +1,21 @@
+@use '@scss/mixins' as mx;
+
+.GenreCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: var(--genre-card-width);
+  height: var(--genre-card-height);
+  border-radius: 1rem;
+  border: 1px solid var(--cl-border-primary);
+  overflow: hidden;
+  box-shadow: var(--bxsh-basic);
+
+  &__img {}
+
+  &__title {
+    color: var(--cl-text-primary);
+    text-decoration: none;
+  }
+}

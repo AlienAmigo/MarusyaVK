@@ -1,2 +1,19 @@
 .Genres {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 4rem 0 7.5rem;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, var(--genre-card-width));
+    grid-template-rows: repeat(auto-fit, var(--genre-card-height));
+    column-gap: 2.5rem;
+    row-gap: 4rem;
+    list-style: none;
+  }
+
+  &__list-item {
+
+  }
 }

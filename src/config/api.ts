@@ -12,6 +12,6 @@ export const FAVORITES_URL = '/favorites';
 // MOVIE
 export const MOVIE_URL = '/movie';
 export const MOVIE_TOP_10_URL = '/movie/top10';
-export const MOVIE_BY_GENRE_URL = '/movie/genres';
+export const MOVIE_GENRES_URL = '/movie/genres';
 export const MOVIE_BY_ID_URL = (movieId: number) => `/movie/${movieId}`;
 export const MOVIE_RANDOM_URL = '/movie/random';

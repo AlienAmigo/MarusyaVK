@@ -4,8 +4,9 @@ import classNames from 'classnames';
 import { ImageWithLoader } from '@components/ui/ImageWithLoader';
 import { Link } from 'react-router-dom';
 
-import st from './GenreCard.module.scss';
 import { basicRoutesEnum } from '@/routes';
+
+import st from './GenreCard.module.scss';
 
 export interface IGenreCardProps {
   genre: string;
@@ -18,7 +19,9 @@ export const GenreCard: React.FC<IGenreCardProps> = ({ genre, imgUrl, className 
 
   return (
     <Link to={`${basicRoutesEnum.GENRE}/{genre}`} className={classes}>
-      <ImageWithLoader className={st.GenreCard__img} src={imgUrl} />
+      <div className={st.GenreCard__img}>
+        <ImageWithLoader src={imgUrl} />
+      </div>
       <span className={st.GenreCard__title}>{genre}</span>
     </Link>
   );

@@ -9,13 +9,32 @@
   height: var(--genre-card-height);
   border-radius: 1rem;
   border: 1px solid var(--cl-border-primary);
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: var(--cl-white);
+  text-decoration: none;
   overflow: hidden;
   box-shadow: var(--bxsh-basic);
 
-  &__img {}
+  &:hover, &:focus {
+    border-color: var(--cl-bg-active);
+    box-shadow: none;
+  }
+
+  &__img {
+    display: flex;
+    flex: 1;
+  }
 
   &__title {
-    color: var(--cl-text-primary);
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    justify-content: center;
+    height: 6rem;
+    background-color: var(--cl-black);
+
     text-decoration: none;
   }
 }

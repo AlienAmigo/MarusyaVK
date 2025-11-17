@@ -35,7 +35,7 @@ export const ImageWithLoader: React.FC<IImageWithLoaderProps> = ({
 
   return (
     <>
-      {isLoading && <Loader stretch />}
+      {(isLoading || !imgProps.src) && <Loader stretch />}
       {hasError ? (
         <span className={st.MovieCard__error}>{errorMsg}</span>
       ) : (

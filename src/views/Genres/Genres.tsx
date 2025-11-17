@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 
-import axiosInstance from '@/services/axiosInstance';
-
 import { Loader } from '@components/ui/Loader';
 import { GenreCard } from '@components/GenreCard';
 
-import { useGetMovieGenres } from '@hooks/api/useGetMovieGenres';
-import { useGetMovie } from '@hooks/api/useGetMovie';
-
-import { MOVIE_URL } from '@/config';
+import { useGetGenres } from '@hooks/api/useGetGenres';
 
 import st from './Genres.module.scss';
 
@@ -23,39 +18,19 @@ export interface IGenrePosters {
 }
 
 const Genres: React.FC<IGenres> = ({ className }) => {
-  const [genrePosters, setGenrePosters] = useState<IGenrePosters[]>([]);
-
   const classes = classNames(st.Genres, className);
 
-  const { data: genresList, isLoading } = useGetMovieGenres();
-  // const { data } = useGetMovie({count: 1, genre: 'action'});
+  const { data: genresList, genrePosters, isLoading } = useGetGenres();
 
-  // console.log('genres', data);
+  const posterMap = genrePosters.reduce(
+    (acc, item) => {
+      acc[item.genre] = item.imgUrl;
+      return acc;
+    },
+    {} as Record<string, string>
+  );
 
-  // if (genresList && genresList.length) {
-  //   const postersArr: IGenrePosters[] = [];
-  //   genresList.forEach(item => {
-  //
-  //     axiosInstance
-  //       .get(MOVIE_URL, {
-  //         params: {
-  //           count: 1,
-  //           genre: item,
-  //         },
-  //       })
-  //       .then(result => result.data)
-  //       .then(result => {
-  //         postersArr.push({ genre: item, imgUrl: result.backdropUrl });
-  //
-  //         console.log('postersArr', postersArr);
-  //       })
-  //       .catch(err => console.log(err))
-  //       .finally(() => setGenrePosters(postersArr));
-  //   });
-  // }
-
-  // console.log('Genres', genresList);
-
+  console.log('posterMap', posterMap);
 
   return isLoading ? (
     <Loader stretch />
@@ -66,7 +41,7 @@ const Genres: React.FC<IGenres> = ({ className }) => {
         {genresList ? (
           genresList.map((item: string, index) => (
             <li key={index} className={st['Genres__list-item']}>
-              <GenreCard genre={item} imgUrl={genrePosters?.[item as string] || ''} />
+              <GenreCard genre={item} imgUrl={posterMap[item] || ''} />
             </li>
           ))
         ) : (

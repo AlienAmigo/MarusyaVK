@@ -1,15 +1,12 @@
 .Home {
-  display: flex;
+  display: grid;
   flex: 1;
-  flex-direction: column;
+  grid-template-rows: minmax(552px, max-content) 1fr;
 
   &__random-movie {
     display: flex;
     flex-direction: column;
-    height: 552px;
-  }
-
-  &__top10 {
-
+    flex: 1;
+    align-self: stretch;
   }
 }

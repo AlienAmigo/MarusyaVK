@@ -22,6 +22,11 @@
     box-shadow: none;
   }
 
+  @include mx.vp-768 {
+    width: var(--genre-card-width-sm);
+    height: var(--genre-card-height-sm);
+  }
+
   &__img {
     display: flex;
     flex: 1;
@@ -34,7 +39,10 @@
     justify-content: center;
     height: 6rem;
     background-color: var(--cl-black);
-
     text-decoration: none;
+
+    @include mx.vp-768 {
+
+    }
   }
 }

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { SearchField } from '@components/SearchField';
 import { Logo } from '@components/ui/Logo'
-import GernesImg from './assets/gernes.svg?react';
+import GenresImg from './assets/gernes.svg?react';
 import SearchImg from './assets/search.svg?react';
 import UserImg from './assets/user.svg?react';
 
@@ -44,7 +44,7 @@ export const Header: React.FC<IHeader> = ({ className }) => {
           <li className={st['Header__nav-item']}>
             <NavLink to={routesEnum.GENRES} className={linkClasses}>
               <span className={st['Header__nav-item-title']}>Жанры</span>
-              <GernesImg className={st['Header__nav-item-icon']} />
+              <GenresImg className={st['Header__nav-item-icon']} />
             </NavLink>
           </li>
           <button className={st['Header__nav-item-icon']} type={'button'} onClick={showSearchField}>

@@ -25,14 +25,11 @@ const Genres: React.FC<IGenres> = ({ className }) => {
     {} as Record<string, string>
   );
 
-  console.log('genresList', genresList);
-  console.log('genrePosters', genrePosters);
-
   return isLoading ? (
     <Loader stretch />
   ) : (
     <section className={classes}>
-      <h1 className={st.title}>Жанры фильмов</h1>
+      <h1 className={st.Genres__title}>Жанры фильмов</h1>
       <ul className={st.Genres__list}>
         {genresList ? (
           genresList.map((item: string, index) => (

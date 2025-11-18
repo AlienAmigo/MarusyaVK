@@ -6,7 +6,7 @@ import { Loader } from '@components/ui/Loader';
 import st from './ImageWithLoader.module.scss';
 
 export interface IImageWithLoaderProps extends React.ImgHTMLAttributes<HTMLElement> {
-  errorMsg?: string;
+  errorMsg?: React.ReactNode;
   fallback?: React.ReactNode;
   className?: string;
 }

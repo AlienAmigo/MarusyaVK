@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import { ImageWithLoader } from '@components/ui/ImageWithLoader';
@@ -39,6 +39,8 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
     trailerUrl,
     onRefresh,
   } = props;
+
+  const [showTrailerModal, setshowTrailerModal] = useState<boolean>(false);
 
   const navigate = useNavigate();
 

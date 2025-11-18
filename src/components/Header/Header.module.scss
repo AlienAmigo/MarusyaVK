@@ -78,15 +78,20 @@
       background-color: var(--cl-main);
       transform: translateX(-50%);
       transition: all var(--time-020) ease-in-out;
-    }
 
-    //border-bottom: 1px solid var(--cl-trans);
+      @include mx.vp-768 {
+        display: none;
+      }
+    }
 
     &--active {
       &:before {
         max-width: 100%;
       }
-      //border-bottom: 1px solid var(--cl-main);
+
+      @include mx.vp-768 {
+        color: var(--cl-main);
+      }
     }
   }
 

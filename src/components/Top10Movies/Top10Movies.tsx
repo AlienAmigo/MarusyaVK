@@ -23,7 +23,7 @@ export const Top10Movies: React.FC<ITop10MoviesProps> = ({ className }) => {
     <section className={classes}>
       <h2 className={st.Top10Movies__title}>Топ 10 фильмов</h2>
       {isLoading ? (
-        <Loader />
+        <Loader stretch/>
       ) : data ? (
         <ul className={st.Top10Movies__list}>
           {data.map(item => (

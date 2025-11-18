@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import { Loader } from '@components/ui/Loader';
@@ -10,11 +10,6 @@ import st from './Genres.module.scss';
 
 export interface IGenres {
   className?: string;
-}
-
-export interface IGenrePosters {
-  genre: string;
-  imgUrl: string;
 }
 
 const Genres: React.FC<IGenres> = ({ className }) => {
@@ -30,7 +25,8 @@ const Genres: React.FC<IGenres> = ({ className }) => {
     {} as Record<string, string>
   );
 
-  console.log('posterMap', posterMap);
+  console.log('genresList', genresList);
+  console.log('genrePosters', genrePosters);
 
   return isLoading ? (
     <Loader stretch />

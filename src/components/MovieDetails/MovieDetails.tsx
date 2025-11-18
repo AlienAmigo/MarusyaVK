@@ -31,6 +31,7 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
     language,
     originalTitle,
     plot,
+    posterUrl,
     releaseYear,
     runtime,
     title,
@@ -89,7 +90,7 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
         </div>
       </div>
       <div className={st['MovieDetails__poster-wrapper']}>
-        <ImageWithLoader className={st.MovieDetails__poster} alt={title} src={backdropUrl} />
+        <ImageWithLoader className={st.MovieDetails__poster} alt={title} src={backdropUrl || posterUrl} />
       </div>
     </section>
   );

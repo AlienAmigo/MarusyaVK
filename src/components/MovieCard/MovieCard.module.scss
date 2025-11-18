@@ -10,6 +10,8 @@
   border: 1px solid var(--cl-border-primary);
   overflow: hidden;
   box-shadow: var(--bxsh-basic);
+  text-decoration: none;
+  color: var(--cl-white);
 
   @include mx.vp-768 {
     box-shadow: var(--bxsh-basic-sm);

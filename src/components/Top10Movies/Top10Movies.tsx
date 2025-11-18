@@ -15,9 +15,9 @@ export interface ITop10MoviesProps {
 export const Top10Movies: React.FC<ITop10MoviesProps> = ({ className }) => {
   const { data, isLoading } = useGetTop10Movies();
 
-  console.log('Top10Movies', data);
-
   const classes = classNames(st.Top10Movies, className);
+
+  console.log('Top10Movies', data);
 
   return (
     <section className={classes}>
@@ -28,7 +28,12 @@ export const Top10Movies: React.FC<ITop10MoviesProps> = ({ className }) => {
         <ul className={st.Top10Movies__list}>
           {data.map(item => (
             <li key={item.id} className={st['Top10Movies__list-item']}>
-              <MovieCard id={item.id} posterUrl={item.posterUrl} alt={item.title} />
+              <MovieCard
+                id={item.id}
+                posterUrl={item.posterUrl || item.posterUrl}
+                alt={item.title}
+                fallback={item.title}
+              />
             </li>
           ))}
         </ul>

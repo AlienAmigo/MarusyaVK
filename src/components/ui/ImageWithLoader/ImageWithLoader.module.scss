@@ -1,9 +1,18 @@
 .ImageWithLoader {
-  display: block;
+  display: flex;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  text-decoration: none;
+
+  &__error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+  }
 
   &--loading {
     display: none;

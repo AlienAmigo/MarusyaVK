@@ -1,0 +1,66 @@
+@use "$sass/abstracts/abstracts" as *;
+
+.modalWindow {
+    &__wrapper {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: $z-layer-modal;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(52, 48, 58, 0.3);
+
+        &--non-blocking {
+            position: absolute;
+            inset: 0;
+            width: fit-content;
+            height: fit-content;
+            margin: auto;
+            background: transparent;
+        }
+    }
+
+    &__window {
+        display: flex;
+        flex-direction: column;
+        width: var(--modal-width, max-content);
+        max-width: calc(100vw - 2 * 1rem);
+        height: var(--modal-height, max-content);
+        max-height: calc(100vh - 2 * 1rem);
+        overflow: hidden;
+        background-color: var(--cl-ui-white);
+        border-radius: 0.75rem;
+        box-shadow: 0 0 4px #8e8dd028;
+        opacity: 1;
+        animation: fadeIn 0.5s ease-in;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding: $modal-padding $modal-padding 0;
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    &__close-btn {
+        cursor: pointer;
+    }
+
+    &__body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        height: auto;
+        padding-right: calc(#{$modal-padding} / 2);
+        margin: 0 calc(#{$modal-padding} / 2) #{$modal-padding} #{$modal-padding};
+        overflow: auto;
+    }
+}

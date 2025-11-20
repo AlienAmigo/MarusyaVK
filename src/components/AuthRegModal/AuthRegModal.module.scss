@@ -1,0 +1,33 @@
+.AuthRegModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: auto;
+
+  &__logo {
+    &:hover {
+      opacity: var(--anim-opacity);
+    }
+  }
+
+  &__logo-img {
+    width: 133px;
+    height: 30px;
+  }
+
+  &__body {
+    align-self: stretch;
+    align-items: center;
+    flex: 1;
+    gap: 2rem;
+  }
+
+  &__registration {
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 24px;
+    color: var(--cl-black);
+    text-decoration: none;
+  }
+}

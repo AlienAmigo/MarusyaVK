@@ -4,6 +4,8 @@ export enum basicRoutesEnum {
   GENRE = '/genre',
   FILM = '/film',
   PROFILE = '/profile',
+  AUTH = '/auth',
+  REGISTER = '/register',
 }
 
 export enum routesEnum {
@@ -12,4 +14,6 @@ export enum routesEnum {
   GENRE = `${basicRoutesEnum.GENRE}/:genre`,
   FILM = `${basicRoutesEnum.FILM}/:id`,
   PROFILE = basicRoutesEnum.PROFILE,
+  AUTH = basicRoutesEnum.AUTH,
+  REGISTER = basicRoutesEnum.REGISTER,
 }

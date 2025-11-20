@@ -1,0 +1,1 @@
+export { AuthRegModal } from './AuthRegModal';

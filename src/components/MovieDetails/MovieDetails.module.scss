@@ -133,6 +133,18 @@
   //  MODIFICATORS
   &--full-info {
     #{$root} {
+      &__title {
+        display: flex;
+        overflow: visible;
+        text-overflow: unset;
+      }
+
+      &__plot {
+        display: flex;
+        overflow: visible;
+        text-overflow: unset;
+      }
+
       &__buttons {
         justify-content: flex-start;
         gap: 1rem;

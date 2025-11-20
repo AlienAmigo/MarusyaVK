@@ -16,6 +16,7 @@ import classNames from 'classnames';
 export interface IModalWindowProps extends React.PropsWithChildren {
   closeModal?: () => void;
   className?: string;
+  bodyClassName?: string;
   children?: React.ReactNode;
   enableCloseByOutsideClick?: boolean;
   enableCloseOnEscapeKeydown?: boolean;
@@ -28,6 +29,7 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
   children,
   closeModal = () => {},
   className,
+  bodyClassName,
   enableCloseByOutsideClick = true,
   enableCloseOnEscapeKeydown,
   theme = ModalWindowThemeEnum.BASIC,
@@ -45,12 +47,9 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
     enableCloseByOutsideClick ? closeModal : undefined
   );
 
-  const wrapperClasses = classNames(
-    st.modalWindow,
-    st[`modalWindow--theme--${theme}`]
-  );
-
-  const windowClasses = classNames(st.modalWindow__window,     className);
+  const wrapperClasses = classNames(st.modalWindow, st[`modalWindow--theme--${theme}`]);
+  const windowClasses = classNames(st.modalWindow__window, className);
+  const bodyClasses = classNames(st.modalWindow__body, bodyClassName);
 
   return createPortal(
     <div className={wrapperClasses}>
@@ -58,7 +57,7 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
         <button className={st['modalWindow__close-btn']} onClick={closeModal}>
           <CloseImg className={st['modalWindow__close-icon']} />
         </button>
-        <div className={st.modalWindow__body}>{children}</div>
+        <div className={bodyClasses}>{children}</div>
       </div>
     </div>,
     document.body

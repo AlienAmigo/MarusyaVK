@@ -52,7 +52,7 @@ export const Header: React.FC<IHeader> = ({ className }) => {
           </button>
           <SearchField className={st['Header__search-field']} />
           <li className={st['Header__nav-item']}>
-            <NavLink to={routesEnum.PROFILE} className={st['Header__nav-link']}>
+            <NavLink to={routesEnum.AUTH} className={st['Header__nav-link']}>
               <span className={st['Header__nav-item-title']}>Войти</span>
               <UserImg className={st['Header__nav-item-icon']} />
             </NavLink>

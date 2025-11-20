@@ -12,6 +12,8 @@ const App = () => {
   const Genres = lazy(() => import('./views/Genres'));
   const Genre = lazy(() => import('./views/Genre'));
   const Profile = lazy(() => import('./views/Profile'));
+  const Auth = lazy(() => import('./views/Auth'));
+  const Register = lazy(() => import('./views/Register'));
   const Page404 = lazy(() => import('./views/Page404'));
 
   const SuspenseFallback = () => <Loader stretch />;
@@ -28,6 +30,8 @@ const App = () => {
         <Route path={routesEnum.GENRES} element={SuspenseElement(<Genres />)} />
         <Route path={routesEnum.GENRE} element={SuspenseElement(<Genre />)} />
         <Route path={routesEnum.PROFILE} element={SuspenseElement(<Profile />)} />
+        <Route path={routesEnum.AUTH} element={SuspenseElement(<Auth />)} />
+        <Route path={routesEnum.REGISTER} element={SuspenseElement(<Register />)} />
         <Route path={'*'} element={SuspenseElement(<Page404 />)} />
       </Route>
     </Routes>

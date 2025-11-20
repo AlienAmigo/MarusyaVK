@@ -46,19 +46,15 @@ export const AboutFilm: React.FC<IAboutFilmProps> = props => {
     <section className={classes}>
       <h2 className={st.AboutFilm__title}>{data.title}</h2>
       <ul className={st.AboutFilm__list}>
-        {AboutData.map((item, index) =>
-          item.value ? (
-            <li key={index} className={st.AboutFilm__item}>
-              <span className={st['AboutFilm__field-wrapper']}>
-                <span className={st.AboutFilm__field}>{item.field}</span>
-                <span className={st.AboutFilm__dots} />
-              </span>
-              <span className={st.AboutFilm__value}>{item.value || 'N/A'}</span>
-            </li>
-          ) : (
-            <></>
-          )
-        )}
+        {AboutData.filter(item => item.value).map((item, index) => (
+          <li key={index} className={st.AboutFilm__item}>
+            <span className={st['AboutFilm__field-wrapper']}>
+              <span className={st.AboutFilm__field}>{item.field}</span>
+              <span className={st.AboutFilm__dots} />
+            </span>
+            <span className={st.AboutFilm__value}>{item.value || 'N/A'}</span>
+          </li>
+        ))}
       </ul>
     </section>
   );

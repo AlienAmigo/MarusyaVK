@@ -13,7 +13,7 @@ export const useGetMovie = (
     genre?: string;
   } = {}
 ) => {
-  const { state, fetch, refetch } = useFetch<IMovie>(MOVIE_URL, {
+  const { state, fetch, refetch } = useFetch<IMovie[]>(MOVIE_URL, {
     params: params,
   });
 

@@ -18,7 +18,7 @@ export const GenreCard: React.FC<IGenreCardProps> = ({ genre, imgUrl, className 
   const classes = classNames(st.GenreCard, className);
 
   return (
-    <Link to={`${basicRoutesEnum.GENRE}/{genre}`} className={classes}>
+    <Link to={`${basicRoutesEnum.GENRE}/${genre}`} className={classes}>
       <div className={st.GenreCard__img}>
         <ImageWithLoader src={imgUrl} />
       </div>

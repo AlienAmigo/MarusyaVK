@@ -1,0 +1,28 @@
+@use "@scss/mixins" as mx;
+
+.PageTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+
+  @include mx.vp-768 {
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  &__back-btn {}
+
+  &__title {
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 3.5rem;
+    color: var(--cl-content-primary);
+
+    @include mx.vp-768 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+
+}

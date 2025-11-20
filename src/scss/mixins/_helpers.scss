@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use './media' as mx;
 
 // supports
 /** Mozilla */
@@ -147,3 +148,18 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+// список на странице с карточками
+@mixin card-list() {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  column-gap: 2.5rem;
+  row-gap: 4rem;
+  list-style: none;
+
+  @include mx.vp-768 {
+    gap: 2.5rem;
+  }
+}
+

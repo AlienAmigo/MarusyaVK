@@ -8,7 +8,9 @@
   padding: 2.5rem 0 7.5rem;
 
   @include mx.vp-768 {
-    padding: 2rem 0 0;
+    margin: 0 calc(var(--container-padding-sm) * -1);
+    padding: 2rem var(--container-padding-sm) 0;
+    overflow-x: hidden;
   }
 
   &__title {
@@ -23,19 +25,14 @@
   }
 
   &__list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, var(--movie-card-width));
-    grid-template-rows: repeat(auto-fit, var(--movie-card-height));
-    column-gap: 40px;
-    row-gap: 64px;
+    @include mx.card-list();
     padding-top: 4rem;
-    list-style: none;
     counter-reset: count;
 
     @include mx.vp-768 {
       @include mx.scroll-style(0.625rem, var(--cl-bg-disabled), var(--cl-transparent));
       display: flex;
-      margin-left: calc(var(--container-padding-sm) * -1);
+      margin: 0 calc(var(--container-padding-sm) * -1);
       padding: 2.5rem var(--container-padding-sm) 3rem;
       overflow-x: auto;
     }

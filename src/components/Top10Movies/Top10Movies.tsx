@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { Loader } from '@components/ui/Loader';
-import { MovieCard } from '@components/MovieCard';
+import { MovieCard, MovieCardThemeEnum } from '@components/MovieCard';
 
 import { useGetTop10Movies } from '@hooks/api/useGetTop10Movies';
 
@@ -16,8 +16,6 @@ export const Top10Movies: React.FC<ITop10MoviesProps> = ({ className }) => {
   const { data, isLoading } = useGetTop10Movies();
 
   const classes = classNames(st.Top10Movies, className);
-
-  console.log('Top10Movies', data);
 
   return (
     <section className={classes}>
@@ -33,6 +31,7 @@ export const Top10Movies: React.FC<ITop10MoviesProps> = ({ className }) => {
                 posterUrl={item.posterUrl || item.posterUrl}
                 alt={item.title}
                 fallback={item.title}
+                theme={MovieCardThemeEnum.TOP10}
               />
             </li>
           ))}

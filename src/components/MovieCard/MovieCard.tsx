@@ -6,20 +6,35 @@ import { ImageWithLoader, IImageWithLoaderProps } from '@components/ui/ImageWith
 
 import { basicRoutesEnum } from '@/routes';
 
+import { MovieCardThemeEnum } from './types';
+
 import st from './MovieCard.module.scss';
 
 export interface IMovieCardProps extends Omit<IImageWithLoaderProps, 'id'> {
   id: number;
   posterUrl: string;
-  alt: string;
+  alt?: string;
+  theme?: MovieCardThemeEnum;
   className?: string;
 }
 
 export const MovieCard: React.FC<IMovieCardProps> = props => {
-  const { id, posterUrl, alt, className, ...imgProps } = props;
+  const {
+    id,
+    posterUrl,
+    alt = '',
+    theme = MovieCardThemeEnum.BASIC,
+    className,
+    ...imgProps
+  } = props;
+
   const movieLink = `${basicRoutesEnum.FILM}/${id}`;
 
-  const classes = classNames(st.MovieCard, className);
+  const classes = classNames(
+    st.MovieCard,
+    { [st['MovieCard--theme--`${theme}']]: theme },
+    className
+  );
 
   return (
     <Link to={movieLink} className={classes}>

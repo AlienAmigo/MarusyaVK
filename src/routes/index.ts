@@ -9,7 +9,7 @@ export enum basicRoutesEnum {
 export enum routesEnum {
   HOME = basicRoutesEnum.HOME,
   GENRES = basicRoutesEnum.GENRES,
-  GENRE = `${basicRoutesEnum.GENRE}/:id`,
+  GENRE = `${basicRoutesEnum.GENRE}/:genre`,
   FILM = `${basicRoutesEnum.FILM}/:id`,
   PROFILE = basicRoutesEnum.PROFILE,
 }

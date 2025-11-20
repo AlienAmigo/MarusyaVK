@@ -1,2 +1,20 @@
+@use '@scss/mixins' as mx;
+
 .Genre {
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  padding: 4rem 0 10rem;
+
+  &__list {
+    @include mx.card-list();
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__more-btn {
+    margin: 4rem auto 0;
+  }
 }

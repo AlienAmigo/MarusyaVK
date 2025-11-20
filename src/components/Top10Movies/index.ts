@@ -1,1 +1,1 @@
-export { Top10Movies } from './Top10Movies';
+export * from './Top10Movies';

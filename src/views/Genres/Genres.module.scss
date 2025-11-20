@@ -10,33 +10,8 @@
     padding: 1rem 0 2.5rem;
   }
 
-  &__title {
-    margin-bottom: 4rem;
-    font-weight: 700;
-    font-size: 3rem;
-    line-height: 3.5rem;
-    color: var(--cl-content-primary);
-
-    @include mx.vp-768 {
-      margin-bottom: 2.5rem;
-      font-size: 1.5rem;
-      line-height: 2rem;
-    }
-  }
-
   &__list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, var(--genre-card-width));
-    grid-template-rows: repeat(auto-fit, var(--genre-card-height));
-    column-gap: 2.5rem;
-    row-gap: 4rem;
-    list-style: none;
-
-    @include mx.vp-768 {
-      grid-template-columns: repeat(auto-fit, var(--genre-card-width-sm));
-      grid-template-rows: repeat(auto-fit, var(--genre-card-height-sm));
-      gap: 2.5rem;
-    }
+    @include mx.card-list();
   }
 
   &__list-item {

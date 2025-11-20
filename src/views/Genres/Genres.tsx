@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import { PageTitle } from '@components/ui/PageTitle';
 import { Loader } from '@components/ui/Loader';
 import { GenreCard } from '@components/GenreCard';
 
@@ -29,7 +30,7 @@ const Genres: React.FC<IGenres> = ({ className }) => {
     <Loader stretch />
   ) : (
     <section className={classes}>
-      <h1 className={st.Genres__title}>Жанры фильмов</h1>
+      <PageTitle>Жанры фильмов</PageTitle>
       <ul className={st.Genres__list}>
         {genresList ? (
           genresList.map((item: string, index) => (

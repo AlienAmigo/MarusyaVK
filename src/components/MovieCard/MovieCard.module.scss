@@ -22,6 +22,19 @@
     box-shadow: none;
   }
 
+  // THEME
+  &--theme {
+    &--basic {
+      width: var(--movie-card-width-sm);
+      height: var(--movie-card-height-sm);
+    }
+
+    &--top10 {
+      width: var(--movie-card-width);
+      height: var(--movie-card-height);
+    }
+  }
+
   &__img {
     width: 100%;
     height: 100%;

@@ -21,8 +21,6 @@ const Home: React.FC<IHome> = ({ className }) => {
 
   const classes = classNames(st.Home, className);
 
-  console.log('data', data);
-
   return (
     <div className={classes}>
       <h1 className="visually-hidden">Главная</h1>

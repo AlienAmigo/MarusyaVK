@@ -58,7 +58,6 @@ export const ImageWithLoader: React.FC<IImageWithLoaderProps> = ({
         <span className={st.ImageWithLoader__error}>{errorMsg}</span>
       ) : (
         <img
-          {...imgProps}
           className={classes}
           src={currentSrc}
           alt={imgProps.alt}

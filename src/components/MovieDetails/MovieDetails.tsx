@@ -21,6 +21,7 @@ import st from './MovieDetails.module.scss';
 export interface IMovieDetailsProps extends Partial<IMovie> {
   className?: string;
   onRefresh?: () => void;
+  fullInfo?: boolean;
 }
 
 export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
@@ -29,6 +30,7 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
     className,
     genres,
     id,
+    fullInfo,
     language,
     originalTitle,
     plot,
@@ -45,7 +47,11 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
 
   const navigate = useNavigate();
 
-  const classes = classNames(st.MovieDetails, className);
+  const classes = classNames(
+    st.MovieDetails,
+    { [st['MovieDetails--full-info']]: fullInfo },
+    className
+  );
 
   const titleText = language && isCurrentLanguage(language) ? originalTitle : title;
 
@@ -84,9 +90,11 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
           >
             Трейлер
           </Button>
-          <Button variant={VariantEnum.QUATERNARY} onClick={handleOnShowFilmDetails}>
-            О фильме
-          </Button>
+          {onRefresh && (
+            <Button variant={VariantEnum.QUATERNARY} onClick={handleOnShowFilmDetails}>
+              О фильме
+            </Button>
+          )}
           <Button isIcon variant={VariantEnum.PRIMARY} onClick={handleOnLikeBtnClick}>
             <LikeImg />
           </Button>

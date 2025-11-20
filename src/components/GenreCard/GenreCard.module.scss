@@ -22,7 +22,7 @@
     box-shadow: none;
   }
 
-  @include mx.vp-768 {
+  @include mx.vp-992 {
     width: var(--genre-card-width-sm);
     height: var(--genre-card-height-sm);
   }
@@ -41,7 +41,7 @@
     background-color: var(--cl-black);
     text-decoration: none;
 
-    @include mx.vp-768 {
+    @include mx.vp-992 {
 
     }
   }

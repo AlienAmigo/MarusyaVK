@@ -7,9 +7,9 @@
   flex-direction: column;
   padding: 2.5rem 0 7.5rem;
 
-  @include mx.vp-768 {
+  @include mx.vp-992 {
     margin: 0 calc(var(--container-padding-sm) * -1);
-    padding: 2rem var(--container-padding-sm) 0;
+    padding-bottom: 0;
     overflow-x: hidden;
   }
 
@@ -18,7 +18,8 @@
     line-height: 3rem;
     font-weight: 700;
 
-    @include mx.vp-768 {
+    @include mx.vp-992 {
+      padding: 0 var(--container-padding-sm);
       font-size: 1.5rem;
       line-height: 2rem;
     }
@@ -29,9 +30,11 @@
     padding-top: 4rem;
     counter-reset: count;
 
-    @include mx.vp-768 {
-      @include mx.scroll-style(0.625rem, var(--cl-bg-disabled), var(--cl-transparent));
+    @include mx.vp-992 {
+      //@include mx.scroll-style(0.625rem, var(--cl-bg-disabled), var(--cl-transparent));
       display: flex;
+      flex-wrap: nowrap;
+      max-width: 100%;
       margin: 0 calc(var(--container-padding-sm) * -1);
       padding: 2.5rem var(--container-padding-sm) 3rem;
       overflow-x: auto;

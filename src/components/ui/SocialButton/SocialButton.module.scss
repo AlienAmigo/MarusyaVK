@@ -14,7 +14,7 @@
     opacity: var(--anim-opacity);
   }
 
-  @include mx.vp-768 {
+  @include mx.vp-992 {
     width: 1.5rem;
     height: 1.5rem;
   }
@@ -29,7 +29,7 @@
     max-height: 1.125rem;
 
     svg {
-      @include mx.vp-768 {
+      @include mx.vp-992 {
         transform: scale(0.66666);
       }
     }

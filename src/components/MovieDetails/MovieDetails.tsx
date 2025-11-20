@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { ImageWithLoader } from '@components/ui/ImageWithLoader';
 import { RatingBadge } from '@components/ui/RatingBadge';
 import { Button } from '@components/ui/Button';
+import { TrailerModal } from '@components/TrailerModal';
 import RefreshImg from './assets/refresh.svg?react';
 import LikeImg from './assets/like.svg?react';
 
@@ -36,11 +37,11 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
     runtime,
     title,
     tmdbRating,
-    trailerUrl,
+    trailerYouTubeId,
     onRefresh,
   } = props;
 
-  const [showTrailerModal, setshowTrailerModal] = useState<boolean>(false);
+  const [showTrailerModal, setShowTrailerModal] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -52,9 +53,15 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
 
   const genresText = genres?.join(', ');
 
-  const handleOnShowTrailer = () => {};
+  const handleOnShowTrailer = () => {
+    setShowTrailerModal(true);
+  };
+
   const handleOnShowFilmDetails = () => navigate(`${basicRoutesEnum.FILM}/${id}`);
+
   const handleOnLikeBtnClick = () => {};
+
+  const handleOnCloseTrailer = () => setShowTrailerModal(false);
 
   return (
     <section className={classes}>
@@ -70,7 +77,11 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
         <h2 className={st.MovieDetails__title}>{titleText}</h2>
         <p className={st.MovieDetails__plot}>{plot}</p>
         <div className={st.MovieDetails__buttons}>
-          <Button variant={VariantEnum.SECONDARY} onClick={handleOnShowTrailer}>
+          <Button
+            className={st['MovieDetails__trailer-btn']}
+            variant={VariantEnum.SECONDARY}
+            onClick={handleOnShowTrailer}
+          >
             Трейлер
           </Button>
           <Button variant={VariantEnum.QUATERNARY} onClick={handleOnShowFilmDetails}>
@@ -92,8 +103,15 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
         </div>
       </div>
       <div className={st['MovieDetails__poster-wrapper']}>
-        <ImageWithLoader className={st.MovieDetails__poster} alt={title} src={backdropUrl || posterUrl} />
+        <ImageWithLoader
+          className={st.MovieDetails__poster}
+          alt={title}
+          src={backdropUrl || posterUrl}
+        />
       </div>
+      {showTrailerModal && trailerYouTubeId && (
+        <TrailerModal youTubeId={trailerYouTubeId} closeModal={handleOnCloseTrailer} />
+      )}
     </section>
   );
 };

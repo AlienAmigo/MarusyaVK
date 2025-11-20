@@ -42,7 +42,7 @@ export interface IMovie {
   posterUrl: string;
   backdropUrl: string;
   trailerUrl: string;
-  trailerYoutubeId: string;
+  trailerYouTubeId: string;
   tmdbRating: number;
   searchL: string;
   keywords: string[];

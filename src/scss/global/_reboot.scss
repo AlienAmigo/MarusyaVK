@@ -8,6 +8,8 @@
     transition: all 0.35s ease-in;
   }
 
+  background-color: var(--cl-bg-secondary);
+
   body {
     display: flex;
     flex-direction: column;
@@ -19,5 +21,32 @@
 
   main {
     flex-grow: 1;
+  }
+
+  /* scrollbar styling */
+  /** Mozilla */
+  @supports (-moz-appearance: none) {
+    * {
+      scrollbar-color: var(--cl-accent) var(--cl-transparent);
+      scrollbar-width: thin;
+    }
+  }
+
+  /** Webkit */
+  @supports (-webkit-appearance: none) {
+    ::-webkit-scrollbar {
+      width: var(--scrollbar-width);
+      height: var(--scrollbar-width);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--cl-accent);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: var(--cl-transparent);
+      border-radius: 3px;
+    }
   }
 }

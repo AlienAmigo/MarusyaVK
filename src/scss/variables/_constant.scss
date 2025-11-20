@@ -1,4 +1,7 @@
 :root {
+  --scrollbar-width: 0.5rem;
+  --scrollbar-height: 0.5rem;
+
   --container-padding: 5rem;
   --container-padding-sm: 1.125rem;
 
@@ -13,4 +16,6 @@
 
   --genre-card-width-sm: 335px;
   --genre-card-height-sm: 304px;
+
+  --max-modal-width: 960px;
 }

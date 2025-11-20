@@ -1,82 +1,63 @@
 import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { XIcon } from '$Icons/XIcon';
+
+// components
+import CloseImg from './assets/close.svg?react';
+
+// types
+import { ModalWindowThemeEnum } from '@components/ui/ModalWindow/types';
+
+// hooks
 import { useOnClickOutside } from '@hooks/useOnClickOutside';
 import { useEventListener } from '@hooks/useEventListener';
-import { TCustomStyleProps } from '@/types/';
 
 import classNames from 'classnames';
 
-export interface IModalWindowProps {
+export interface IModalWindowProps extends React.PropsWithChildren {
   closeModal?: () => void;
-  width?: string;
-  height?: string;
-  padding?: string;
-  title?: string;
   className?: string;
-  classNameHeader?: string;
-  contentBlockClassName?: string;
   children?: React.ReactNode;
-  isBehindContentBlocked?: boolean;
-  allowCloseByOutsideClick?: boolean;
+  enableCloseByOutsideClick?: boolean;
   enableCloseOnEscapeKeydown?: boolean;
-  isNoHeader?: boolean;
+  theme?: ModalWindowThemeEnum;
 }
 
 import st from './ModalWindow.module.scss';
 
 export const ModalWindow: React.FC<IModalWindowProps> = ({
-  contentBlockClassName = '',
   children,
-  width,
-  height,
-  padding,
-  title = '',
-  closeModal,
+  closeModal = () => {},
   className,
-  classNameHeader,
-  isBehindContentBlocked = true,
-  allowCloseByOutsideClick = true,
+  enableCloseByOutsideClick = true,
   enableCloseOnEscapeKeydown,
-  isNoHeader = false,
+  theme = ModalWindowThemeEnum.BASIC,
 }) => {
-  const modalRef = useRef<HTMLDivElement | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
-  if (enableCloseOnEscapeKeydown) {
-    useEventListener('keydown', (event: React.KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        closeModal && closeModal();
-      }
-    });
-  }
-
-  useOnClickOutside(modalRef, closeModal && allowCloseByOutsideClick ? closeModal : undefined);
-
-  const wrapperClasses = classNames(st.modalWindow__wrapper, className, {
-    [st['modalWindow__wrapper--non-blocking']]: !isBehindContentBlocked,
+  useEventListener('keydown', (event: React.KeyboardEvent) => {
+    if (event.key === 'Escape' && enableCloseOnEscapeKeydown) {
+      closeModal();
+    }
   });
 
-  const windowClasses = classNames(st.modalWindow__window, contentBlockClassName);
+  useOnClickOutside(
+    modalRef as React.RefObject<HTMLElement>,
+    enableCloseByOutsideClick ? closeModal : undefined
+  );
 
-  const styleProp: TCustomStyleProps = {
-    ...(width ? { '--modal-width': width } : {}),
-    ...(height ? { '--modal-height': height } : {}),
-    ...(padding ? { '--modal-padding': padding } : {}),
-  };
+  const wrapperClasses = classNames(
+    st.modalWindow,
+    st[`modalWindow--theme--${theme}`]
+  );
+
+  const windowClasses = classNames(st.modalWindow__window,     className);
 
   return createPortal(
     <div className={wrapperClasses}>
-      <div className={windowClasses} ref={modalRef} style={styleProp}>
-        {!isNoHeader && (
-          <div className={classNames(st.modalWindow__header, classNameHeader)}>
-            <p className={st.modalWindow__title}>{title}</p>
-            {closeModal && (
-              <button className={st['modalWindow__close-btn']} onClick={closeModal}>
-                <XIcon className="stroke-[#8686a2] hover:stroke-[#7c78da] transition-all" />
-              </button>
-            )}
-          </div>
-        )}
+      <div className={windowClasses} ref={modalRef}>
+        <button className={st['modalWindow__close-btn']} onClick={closeModal}>
+          <CloseImg className={st['modalWindow__close-icon']} />
+        </button>
         <div className={st.modalWindow__body}>{children}</div>
       </div>
     </div>,

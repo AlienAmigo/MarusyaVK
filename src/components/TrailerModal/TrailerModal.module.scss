@@ -1,2 +1,14 @@
 .TrailerModal {
+  position: relative;
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: 0;
+
+    &--loading {
+      display: none;
+    }
+  }
 }

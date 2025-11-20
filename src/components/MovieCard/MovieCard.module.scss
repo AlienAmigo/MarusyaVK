@@ -13,7 +13,7 @@
   text-decoration: none;
   color: var(--cl-white);
 
-  @include mx.vp-768 {
+  @include mx.vp-992 {
     box-shadow: var(--bxsh-basic-sm);
   }
 

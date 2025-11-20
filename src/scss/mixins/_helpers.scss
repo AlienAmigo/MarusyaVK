@@ -158,7 +158,7 @@
   row-gap: 4rem;
   list-style: none;
 
-  @include mx.vp-768 {
+  @include mx.vp-992 {
     gap: 2.5rem;
   }
 }

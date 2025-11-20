@@ -1,7 +1,7 @@
 @use '../mixins' as mx;
 
 .hidden-sm {
-  @include mx.vp-768 {
+  @include mx.vp-992 {
     display: none;
   }
 }

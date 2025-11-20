@@ -5,6 +5,10 @@
   grid-template-rows: max-content 1fr;
   padding: 4rem 0 10rem;
 
+  @include mx.vp-992 {
+    padding: 1rem 0 2.5rem;
+  }
+
   &__list {
     @include mx.card-list();
   }

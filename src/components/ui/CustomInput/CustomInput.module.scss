@@ -1,2 +1,66 @@
 .CustomInput {
+  $root: &;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__label {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    padding: 1rem 1rem 1rem 3.25rem;
+    border: 1px solid var(--cl-content-placeholder);
+    border-radius: 0.5rem;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    color:  var(--cl-content-placeholder);
+    transform: translateY(-50%);
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    border: none;
+    outline: 0;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+
+    &::placeholder {
+      opacity: 1;
+      color: var(--cl-content-placeholder);
+      transition: all var(--time-035) ease-in-out;
+    }
+
+    &:focus {
+        &::placeholder {
+        opacity: 0;
+          transition: all var(--time-035) ease-in-out;
+      }
+    }
+  }
+
+  &__error {
+    font-size: 1rem;
+    line-height: 1.2;
+    color: var(--cl-warning);
+  }
+
+  &--error {
+    #{$root}__label {
+      border-color: var(--cl-warning);
+    }
+
+    #{$root}__icon {
+      color: var(--cl-warning);
+    }
+  }
 }

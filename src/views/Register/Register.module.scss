@@ -1,2 +1,37 @@
 .Register {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    flex: 1;
+    gap: 1.5rem;
+    width: auto;
+  }
+
+  &__input {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  &__submit {
+    min-width: 100%;
+  }
+
+  &__auth {
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 24px;
+    color: var(--cl-black);
+    text-decoration: none;
+    outline: 0;
+
+    &:focus {
+      color: var(--cl-accent);
+    }
+
+    &:hover {
+      color: var(--cl-main);
+    }
+  }
 }

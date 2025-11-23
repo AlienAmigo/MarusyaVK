@@ -9,8 +9,13 @@
     width: auto;
   }
 
-  &__submit {
+  &__input {
+    align-self: stretch;
     width: 100%;
+  }
+
+  &__submit {
+    min-width: 100%;
   }
 
   &__registration {
@@ -19,9 +24,14 @@
     line-height: 24px;
     color: var(--cl-black);
     text-decoration: none;
+    outline: 0;
+
+    &:focus {
+      color: var(--cl-accent);
+    }
 
     &:hover {
-      color: var(--cl-accent);
+      color: var(--cl-main);
     }
   }
 }

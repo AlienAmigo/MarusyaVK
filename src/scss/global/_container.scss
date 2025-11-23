@@ -5,9 +5,11 @@
   width: 100%;
   max-width: bp.$screen-xl;
   margin: 0 auto;
-  padding: 0 var(--container-padding);
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
 
   @include mx.vp-992 {
-    padding: 0 var(--container-padding-sm);
+    padding-left: var(--container-padding-sm);
+    padding-right: var(--container-padding-sm);
   }
 }

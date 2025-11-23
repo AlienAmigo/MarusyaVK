@@ -11,6 +11,21 @@ const axiosInstance = axios.create({
   },
 });
 
+// Текущее количество попыток рефреша токена
+let isRefreshing = false;
+let failedQueue: any[] = [];
+
+const processQueue = (error: any, token: string | null = null) => {
+  failedQueue.forEach(prom => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token);
+    }
+  });
+  failedQueue = [];
+};
+
 // Request interceptor
 axiosInstance.interceptors.request.use(
   config => {
@@ -27,12 +42,57 @@ axiosInstance.interceptors.response.use(
     console.log(`✅ Success: ${response.status} ${response.config.url}`);
     return response;
   },
-  error => {
+  async error => {
     console.log(`❌ Error: ${error.response?.status} ${error.config?.url}`);
 
-    // Глобальная обработка ошибок
+    const originalRequest = error.config;
+
+    // Если ошибка 401 и это не запрос на обновление токена
+    if (error.response?.status === 401 && !originalRequest._retry) {
+
+      if (isRefreshing) {
+        // Если уже обновляем токен, добавляем запрос в очередь
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject });
+        }).then(() => {
+          return axiosInstance(originalRequest);
+        }).catch(err => {
+          return Promise.reject(err);
+        });
+      }
+
+      originalRequest._retry = true;
+      isRefreshing = true;
+
+      try {
+        // Попытка обновить токен
+        // await authService.refreshToken();
+
+        // После успешного обновления токена
+        processQueue(null, 'new-token');
+        isRefreshing = false;
+
+        // Повторяем оригинальный запрос
+        return axiosInstance(originalRequest);
+      } catch (refreshError) {
+        // Если обновление токена не удалось
+        processQueue(refreshError, null);
+        isRefreshing = false;
+
+        // Перенаправляем на страницу логина
+        if (window.location.pathname !== '/auth') {
+          window.location.href = '/auth';
+        }
+        return Promise.reject(refreshError);
+      }
+    }
+
+    // Для других ошибок
     if (error.response?.status === 401) {
-      // Redirect to login
+      // Перенаправляем на страницу логина
+      if (window.location.pathname !== '/auth') {
+        window.location.href = '/auth';
+      }
     }
 
     return Promise.reject(error);

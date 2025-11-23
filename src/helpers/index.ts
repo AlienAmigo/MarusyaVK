@@ -1,3 +1,4 @@
+export * from './authHelper';
 export * from './formatMinutes';
 export * from './isCurrentLanguage';
 export * from './formatDigitByClasses';

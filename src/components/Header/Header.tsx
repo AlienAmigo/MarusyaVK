@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 
 import { NavLink } from 'react-router-dom';
@@ -12,18 +12,25 @@ import { routesEnum } from '@/routes';
 
 import st from './Header.module.scss';
 
+import { useAuth } from '@hooks/api/useAuth.ts';
+
 export interface IHeader {
   className?: string;
 }
 
 export const Header: React.FC<IHeader> = ({ className }) => {
+  const { isAuthenticated, user } = useAuth();
+
   const classes = classNames('container', st.Header, className);
 
   const linkClasses = ({ isActive }: { isActive: boolean }) =>
     classNames(st['Header__nav-link'], { [st['Header__nav-link--active']]: isActive });
   const mainClasses = classNames('hidden-sm', st['Header__nav-list']);
 
-  const showSearchField = () => {};
+  const showSearchField = () => {}
+
+
+  console.log(isAuthenticated);
 
   return (
     <header className={classes}>
@@ -52,10 +59,19 @@ export const Header: React.FC<IHeader> = ({ className }) => {
           </button>
           <SearchField className={st['Header__search-field']} />
           <li className={st['Header__nav-item']}>
-            <NavLink to={routesEnum.AUTH} className={st['Header__nav-link']}>
-              <span className={st['Header__nav-item-title']}>Войти</span>
-              <UserImg className={st['Header__nav-item-icon']} />
-            </NavLink>
+            {isAuthenticated ? (
+              <NavLink to={routesEnum.PROFILE} className={st['Header__nav-link']}>
+                <span className={st['Header__nav-item-title']}>
+                  {user?.name || 'Профиль'}
+                </span>
+                <UserImg className={st['Header__nav-item-icon']} />
+              </NavLink>
+            ) : (
+              <NavLink to={routesEnum.AUTH} className={st['Header__nav-link']}>
+                <span className={st['Header__nav-item-title']}>Войти</span>
+                <UserImg className={st['Header__nav-item-icon']} />
+              </NavLink>
+            )}
           </li>
         </ul>
       </nav>

@@ -3,8 +3,9 @@ import { authService, User, LoginData, RegisterData } from '@/services/authServi
 
 interface AuthState {
   user: User | null;
-  isAuthenticated: boolean;
+  isAuthenticated: boolean; // Состояние авторизации пользователя
   isLoading: boolean;
+  authChecked: boolean; // Флаг, что проверка авторизации выполнена
   error: string | null;
 }
 
@@ -12,6 +13,7 @@ const initialState: AuthState = {
   user: null,
   isAuthenticated: false,
   isLoading: false,
+  authChecked: false, // Изначально false - проверка не выполнена
   error: null,
 };
 
@@ -67,6 +69,9 @@ const authSlice = createSlice({
     clearError: (state) => {
       state.error = null;
     },
+    setAuthChecked: (state, action: PayloadAction<boolean>) => {
+      state.authChecked = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -79,12 +84,14 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload;
         state.isAuthenticated = true;
+        state.authChecked = true;
         state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
         state.isAuthenticated = false;
+        state.authChecked = true;
         state.user = null;
       })
       // Register
@@ -96,23 +103,27 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload;
         state.isAuthenticated = true;
+        state.authChecked = true;
         state.error = null;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
         state.isAuthenticated = false;
+        state.authChecked = true;
         state.user = null;
       })
       // Logout
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
         state.isAuthenticated = false;
+        state.authChecked = true;
         state.error = null;
       })
       .addCase(logout.rejected, (state) => {
         state.user = null;
         state.isAuthenticated = false;
+        state.authChecked = true;
       })
       // Check Auth
       .addCase(checkAuth.pending, (state) => {
@@ -122,15 +133,17 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload;
         state.isAuthenticated = true;
+        state.authChecked = true;
         state.error = null;
       })
       .addCase(checkAuth.rejected, (state) => {
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
+        state.authChecked = true;
       });
   },
 });
 
-export const { clearError } = authSlice.actions;
+export const { clearError, setAuthChecked } = authSlice.actions;
 export default authSlice.reducer;

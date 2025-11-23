@@ -1,5 +1,7 @@
 import axiosInstance from './axiosInstance';
 
+import { AUTH_LOGIN_URL, AUTH_LOGOUT_URL, USER_CREATE_URL, PROFILE_URL } from '@/config';
+
 export interface LoginData {
   email: string;
   password: string;
@@ -14,40 +16,38 @@ export interface RegisterData {
 }
 
 export interface User {
-  id: string;
+  id: number;
   email: string;
   name: string;
   secondName: string;
 }
 
-class AuthService {
-  // Авторизация
+export const authService = {
   async login(loginData: LoginData): Promise<User> {
-    const response = await axiosInstance.post<User>('/auth/login', loginData);
+    const response = await axiosInstance.post(AUTH_LOGIN_URL, loginData, {
+      // Явно указываем, что это не preflight
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     return response.data;
-  }
+  },
 
-  // Регистрация
   async register(registerData: RegisterData): Promise<User> {
-    const response = await axiosInstance.post<User>('/auth/register', registerData);
+    const response = await axiosInstance.post(USER_CREATE_URL, registerData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     return response.data;
-  }
+  },
 
-  // Выход
   async logout(): Promise<void> {
-    await axiosInstance.post('/auth/logout');
-  }
+    await axiosInstance.post(AUTH_LOGOUT_URL);
+  },
 
-  // Проверка авторизации
   async checkAuth(): Promise<User> {
-    const response = await axiosInstance.get<User>('/auth/me');
+    const response = await axiosInstance.get(PROFILE_URL);
     return response.data;
-  }
-
-  // Обновление токена (если нужно)
-  async refreshToken(): Promise<void> {
-    await axiosInstance.post('/auth/refresh');
-  }
-}
-
-export const authService = new AuthService();
+  },
+};

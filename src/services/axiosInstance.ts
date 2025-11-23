@@ -1,4 +1,3 @@
-// services/axiosInstance.ts
 import axios from 'axios';
 import { BASE_URL, DEFAULT_TIMEOUT } from '@config/';
 
@@ -30,7 +29,12 @@ const processQueue = (error: any, token: string | null = null) => {
 axiosInstance.interceptors.request.use(
   config => {
     console.log(`🚀 Making ${config.method?.toUpperCase()} request to: ${config.url}`);
-    // Можно добавить токен, метрики и т.д.
+
+    // Добавляем заголовки для CORS
+    if (config.method?.toUpperCase() === 'POST' || config.method?.toUpperCase() === 'PUT') {
+      config.headers['Content-Type'] = 'application/json';
+    }
+
     return config;
   },
   error => Promise.reject(error)
@@ -44,11 +48,18 @@ axiosInstance.interceptors.response.use(
   },
   async error => {
     console.log(`❌ Error: ${error.response?.status} ${error.config?.url}`);
+    console.log('Error details:', error.response?.data);
 
     const originalRequest = error.config;
 
+    // Если это OPTIONS запрос и статус 204 - это нормально, пропускаем
+    if (originalRequest?.method?.toUpperCase() === 'OPTIONS' && error.response?.status === 204) {
+      console.log('OPTIONS preflight successful');
+      return Promise.resolve({ data: {}, status: 204 });
+    }
+
     // Если ошибка 401 и это не запрос на обновление токена
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest?._retry) {
 
       if (isRefreshing) {
         // Если уже обновляем токен, добавляем запрос в очередь

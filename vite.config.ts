@@ -21,7 +21,17 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        // additionalData: `@import "@scss/variables"; @import "@scss/mixins";`,
+        // Допустимые свойства для SCSS конфигурации
+      },
+    },
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://cinemaguide.skillbox.cc',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },

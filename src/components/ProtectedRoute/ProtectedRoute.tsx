@@ -1,11 +1,7 @@
-// src/components/ProtectedRoute.tsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-
-import { Loader } from '@components/ui/Loader';
-
 import { useAuth } from '@hooks/api/useAuth';
-
+import { Loader } from '@components/ui/Loader';
 import { routesEnum } from '@/routes';
 
 interface ProtectedRouteProps {
@@ -13,24 +9,18 @@ interface ProtectedRouteProps {
 }
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { isAuthenticated, isLoading, checkAuth } = useAuth();
+  const { isAuthenticated, authChecked } = useAuth();
   const location = useLocation();
 
-  useEffect(() => {
-    // Проверяем авторизацию только если не загружается и не авторизован
-    if (!isAuthenticated && !isLoading) {
-      checkAuth();
-    }
-  }, [isAuthenticated, isLoading, checkAuth]);
-
-  if (isLoading) {
-    return <Loader stretch />;
+  // Если проверка авторизации еще не завершена - НЕ ПЕРЕНАПРАВЛЯЕМ, ждем
+  if (!authChecked) {
+    return <Loader center />;
   }
 
-  if (!isAuthenticated) {
-    // Сохраняем location, чтобы вернуться после авторизации
-    return <Navigate to={routesEnum.AUTH} state={{ from: location }} replace />;
-  }
-
-  return children;
+  // Только после завершения проверки решаем, перенаправлять или нет
+  return isAuthenticated ? (
+    children
+  ) : (
+    <Navigate to={routesEnum.AUTH} state={{ from: location }} replace />
+  );
 };

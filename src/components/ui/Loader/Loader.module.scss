@@ -17,6 +17,14 @@
     margin: auto;
   }
 
+  &--center {
+    position: fixed;
+    z-index: var(--z-layer-notification);
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+  }
+
   &__spinner {
     animation: rotation 1s infinite linear;
   }

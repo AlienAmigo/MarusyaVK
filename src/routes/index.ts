@@ -8,6 +8,11 @@ export enum basicRoutesEnum {
   REGISTER = '/register',
 }
 
+export enum profileRoutesEnum {
+  FAVORITES = '/favorites',
+  SETTINGS = '/settings',
+}
+
 export enum routesEnum {
   HOME = basicRoutesEnum.HOME,
   GENRES = basicRoutesEnum.GENRES,
@@ -16,4 +21,6 @@ export enum routesEnum {
   PROFILE = basicRoutesEnum.PROFILE,
   AUTH = basicRoutesEnum.AUTH,
   REGISTER = basicRoutesEnum.REGISTER,
+  FAVORITES = basicRoutesEnum.PROFILE + profileRoutesEnum.FAVORITES,
+  SETTINGS = basicRoutesEnum.PROFILE + profileRoutesEnum.SETTINGS,
 }

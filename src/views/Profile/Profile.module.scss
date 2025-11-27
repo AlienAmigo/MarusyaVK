@@ -1,2 +1,69 @@
+@use '@scss/mixins' as mx;
+
 .Profile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 4rem 0 10rem;
+
+  &__tabs-header {
+    display: flex;
+    gap: 4rem;
+  }
+
+  &__tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    padding: 0.5rem 0;
+    border: none;
+    border-radius: 0;
+    background-color: var(--cl-transparent);
+    color: var(--cl-content-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    &:before {
+      @include mx.pseudo();
+      z-index: 2;
+      bottom: 0;
+      left: 50%;
+      width: 100%;
+      max-width: 0;
+      height: 1px;
+      background-color: var(--cl-main);
+      transform: translateX(-50%);
+      transition: all var(--time-020) ease-in-out;
+
+      @include mx.vp-992 {
+        display: none;
+      }
+    }
+    &--active {
+      display: flex;
+
+      &:before {
+        max-width: 100%;
+      }
+
+      @include mx.vp-992 {
+        color: var(--cl-main);
+      }
+    }
+  }
+
+  &__tab-text {
+    &--sm {
+      display: none;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    padding: 4rem 0 0;
+  }
 }

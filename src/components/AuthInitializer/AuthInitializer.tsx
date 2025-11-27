@@ -1,16 +1,23 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '@hooks/api/useAuth';
+import { Loader } from '@components/ui/Loader';
 
 interface AuthInitializerProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export const AuthInitializer: React.FC<AuthInitializerProps> = ({ children }) => {
-    const { checkAuth } = useAuth();
+  const { checkAuth, authChecked } = useAuth();
 
-    useEffect(() => {
-        checkAuth();
-    }, [checkAuth]);
+  useEffect(() => {
+    if (!authChecked) {
+      checkAuth();
+    }
+  }, [checkAuth, authChecked]);
 
-    return <>{children}</>;
+  if (!authChecked) {
+    return <Loader center />;
+  }
+
+  return <>{children}</>;
 };

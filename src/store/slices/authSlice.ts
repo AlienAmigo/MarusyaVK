@@ -13,7 +13,7 @@ const initialState: AuthState = {
   user: null,
   isAuthenticated: false,
   isLoading: false,
-  authChecked: false, // Изначально false - проверка не выполнена
+  authChecked: false,
   error: null,
 };
 
@@ -55,7 +55,8 @@ export const checkAuth = createAsyncThunk(
   'auth/checkAuth',
   async (_, { rejectWithValue }) => {
     try {
-      return await authService.checkAuth();
+      const user = await authService.checkAuth();
+      return user;
     } catch (error: any) {
       return rejectWithValue('Не авторизован');
     }
@@ -129,10 +130,10 @@ const authSlice = createSlice({
       .addCase(checkAuth.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(checkAuth.fulfilled, (state, action: PayloadAction<User>) => {
+      .addCase(checkAuth.fulfilled, (state, action: PayloadAction<User | null>) => {
         state.isLoading = false;
         state.user = action.payload;
-        state.isAuthenticated = true;
+        state.isAuthenticated = !!action.payload; // true если user не null
         state.authChecked = true;
         state.error = null;
       })

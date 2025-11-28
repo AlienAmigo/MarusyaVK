@@ -5,6 +5,7 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 
 import { PageTitle } from '@components/ui/PageTitle';
 import { SuspenseElement } from '@components/SuspenseElement';
+import { ProtectedRoute } from '@components/ProtectedRoute';
 
 import FavoriteImg from './assets/favorite.svg?react';
 import UserImg from './assets/user.svg?react';
@@ -40,6 +41,8 @@ const Profile: React.FC<IProfile> = ({ className }) => {
     }
   };
 
+  console.log('');
+
   return (
     <div className={classes}>
       <PageTitle>Мой аккаунт</PageTitle>
@@ -72,8 +75,22 @@ const Profile: React.FC<IProfile> = ({ className }) => {
 
       <div className={st.Profile__content}>
         <Routes>
-          <Route path={profileRoutesEnum.FAVORITES} element={SuspenseElement(<FavoritesTab />)} />
-          <Route path={profileRoutesEnum.SETTINGS} element={SuspenseElement(<SettingsTab />)} />
+          <Route
+            path={profileRoutesEnum.FAVORITES}
+            element={SuspenseElement(
+              <ProtectedRoute>
+                <FavoritesTab />
+              </ProtectedRoute>
+            )}
+          />
+          <Route
+            path={profileRoutesEnum.SETTINGS}
+            element={SuspenseElement(
+              <ProtectedRoute>
+                <SettingsTab />
+              </ProtectedRoute>
+            )}
+          />
           <Route path="/" element={<Navigate to={routesEnum.FAVORITES} replace />} />
         </Routes>
       </div>

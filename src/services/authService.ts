@@ -41,7 +41,7 @@ export const authService = {
   },
 
   async logout(): Promise<void> {
-    await axiosInstance.post(AUTH_LOGOUT_URL);
+    await axiosInstance.get(AUTH_LOGOUT_URL);
   },
 
   async checkAuth(): Promise<User | null> {

@@ -29,6 +29,16 @@ const FavoritesTab: React.FC<IFavoritesTabProps> = ({ className }) => {
     }
   }, [dispatch, isAuthenticated]);
 
+  const handleRemoveFromFavorites = (movieId: number) => {
+    dispatch(removeFromFavorites(movieId))
+      .unwrap()
+      .then(() => {
+        dispatch(fetchFavorites());
+      });
+  };
+
+  console.log('items', items);
+
   return (
     <div className={classes}>
       {isLoading ? (
@@ -36,7 +46,7 @@ const FavoritesTab: React.FC<IFavoritesTabProps> = ({ className }) => {
       ) : (
         <ul className={st.FavoritesTab__wrapper}>
           {items.map(item => (
-            <li key={item.id} className={st.FavoritesTab__item}>
+            <li key={item.title} className={st.FavoritesTab__item}>
               <MovieCard {...item} />
               <button
                 className={st['FavoritesTab__remove-btn']}

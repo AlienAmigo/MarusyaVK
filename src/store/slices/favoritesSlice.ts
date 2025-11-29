@@ -1,14 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axiosInstance from '@services/axiosInstance';
+import { authSlice } from './authSlice';
 import { FAVORITES_URL } from '@config';
 import { IMovie } from '@types';
 
-export interface FavoriteItem {
-  id: number;
-}
-
 export interface FavoritesState {
-  items: FavoriteItem[];
+  items: IMovie[];
   isLoading: boolean;
   error: string | null;
 }
@@ -34,17 +31,20 @@ export const fetchFavorites = createAsyncThunk(
 
 export const addToFavorites = createAsyncThunk(
   'favorites/addToFavorites',
-  async (movieId: number, { rejectWithValue }) => {
+  async (movieId: number, { rejectWithValue, dispatch }) => {
     try {
-      // Создаем FormData для отправки как application/x-www-form-urlencoded
       const formData = new URLSearchParams();
       formData.append('id', movieId.toString());
 
-      const response = await axiosInstance.post<FavoriteItem>(FAVORITES_URL, formData, {
+      const response = await axiosInstance.post<IMovie>(FAVORITES_URL, formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       });
+
+      // После успешного добавления, обновляем auth.favorites
+      dispatch(authSlice.actions.addToFavorites(movieId));
+
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Ошибка добавления в избранное');
@@ -54,9 +54,13 @@ export const addToFavorites = createAsyncThunk(
 
 export const removeFromFavorites = createAsyncThunk(
   'favorites/removeFromFavorites',
-  async (movieId: number, { rejectWithValue }) => {
+  async (movieId: number, { rejectWithValue, dispatch }) => {
     try {
       await axiosInstance.delete(`${FAVORITES_URL}/${movieId}`);
+
+      // После успешного удаления, обновляем auth.favorites
+      dispatch(authSlice.actions.removeFromFavorites(movieId));
+
       return movieId;
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Ошибка удаления из избранного');
@@ -70,6 +74,9 @@ const favoritesSlice = createSlice({
   reducers: {
     clearFavorites: state => {
       state.items = [];
+    },
+    clearError: state => {
+      state.error = null;
     },
   },
   extraReducers: builder => {
@@ -93,9 +100,9 @@ const favoritesSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(addToFavorites.fulfilled, (state, action: PayloadAction<FavoriteItem>) => {
+      .addCase(addToFavorites.fulfilled, (state, action: PayloadAction<IMovie>) => {
         state.isLoading = false;
-        // Проверяем, нет ли уже этого фильма в избранном
+        // Добавляем фильм в список, если его еще нет
         if (!state.items.find(item => item.id === action.payload.id)) {
           state.items.push(action.payload);
         }
@@ -112,6 +119,7 @@ const favoritesSlice = createSlice({
       })
       .addCase(removeFromFavorites.fulfilled, (state, action: PayloadAction<number>) => {
         state.isLoading = false;
+        // Удаляем фильм из списка
         state.items = state.items.filter(item => item.id !== action.payload);
         state.error = null;
       })
@@ -122,5 +130,5 @@ const favoritesSlice = createSlice({
   },
 });
 
-export const { clearFavorites } = favoritesSlice.actions;
+export const { clearFavorites, clearError } = favoritesSlice.actions;
 export default favoritesSlice.reducer;

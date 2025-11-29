@@ -18,17 +18,20 @@ import { addToFavorites, removeFromFavorites } from '@store/slices/favoritesSlic
 export interface ILikeButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string;
   movieId?: number;
-  isLiked?: boolean;
 }
 
-export const LikeButton: React.FC<ILikeButtonProps> = ({ movieId, isLiked, className }) => {
+export const LikeButton: React.FC<ILikeButtonProps> = ({ movieId, className }) => {
   const classes = classNames(st.LikeButton, className);
 
   const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
 
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { isAuthenticated, favorites } = useSelector((state: RootState) => state.auth);
+
+  const isLiked = movieId && favorites.some(favId => Number(favId) === movieId);
+
+  console.log('favorites', favorites);
 
   const handleOnClick = () => {
     if (isAuthenticated) {

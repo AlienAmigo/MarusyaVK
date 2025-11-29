@@ -7,7 +7,6 @@ import { Button } from '@components/ui/Button';
 import { TrailerModal } from '@components/TrailerModal';
 import { LikeButton } from '@components/LikeButton';
 import RefreshImg from './assets/refresh.svg?react';
-import LikeImg from './assets/like.svg?react';
 
 import { formatMinutes, isCurrentLanguage } from '@/helpers';
 
@@ -46,6 +45,8 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
 
   const [showTrailerModal, setShowTrailerModal] = useState<boolean>(false);
 
+  const navigate = useNavigate();
+
   const classes = classNames(
     st.MovieDetails,
     { [st['MovieDetails--full-info']]: fullInfo },
@@ -62,7 +63,7 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
     setShowTrailerModal(true);
   };
 
-  const handleOnShowFilmDetails = () => `${basicRoutesEnum.FILM}/${id}`;
+  const handleOnShowFilmDetails = () => navigate(`${basicRoutesEnum.FILM}/${id}`);
 
   const handleOnCloseTrailer = () => setShowTrailerModal(false);
 

@@ -29,7 +29,6 @@ const FavoritesTab: React.FC<IFavoritesTabProps> = ({ className }) => {
     }
   }, [dispatch, isAuthenticated]);
 
-
   return (
     <div className={classes}>
       {isLoading ? (
@@ -39,7 +38,10 @@ const FavoritesTab: React.FC<IFavoritesTabProps> = ({ className }) => {
           {items.map(item => (
             <li key={item.id} className={st.FavoritesTab__item}>
               <MovieCard {...item} />
-              <button className={st['FavoritesTab__remove-btn']} onClick={() => removeFromFavorites(item.id)}>
+              <button
+                className={st['FavoritesTab__remove-btn']}
+                onClick={() => handleRemoveFromFavorites(item.id)}
+              >
                 <CrossImg />
               </button>
             </li>

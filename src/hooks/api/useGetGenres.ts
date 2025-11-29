@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import axiosInstance from '@/services/axiosInstance';
-import { MOVIE_GENRES_URL, MOVIE_URL } from '@/config';
+import axiosInstance from '@services/axiosInstance';
+import { MOVIE_GENRES_URL, MOVIE_URL } from '@config';
 
 export interface IGenrePosters {
   genre: string;

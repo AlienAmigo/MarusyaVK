@@ -27,7 +27,7 @@ const Register: React.FC<IRegisterProps> = ({ className }) => {
   const [formData, setFormData] = useState({
     email: '',
     name: '',
-    secondName: '',
+    surname: '',
     password: '',
     passwordCheck: '',
   });
@@ -81,7 +81,7 @@ const Register: React.FC<IRegisterProps> = ({ className }) => {
       await register({
         email: formData.email,
         name: formData.name,
-        secondName: formData.secondName,
+        surname: formData.surname,
         password: formData.password,
         passwordCheck: formData.passwordCheck,
       }).unwrap();
@@ -140,9 +140,9 @@ const Register: React.FC<IRegisterProps> = ({ className }) => {
             className={st.Register__input}
             icon={CustomInputIconEnum.MAN}
             type={'text'}
-            id={'second-name'}
-            name={'secondName'}
-            value={formData.secondName}
+            id={'surname'}
+            name={'surname'}
+            value={formData.surname}
             onChange={handleInputChange}
             placeholder={'Фамилия'}
             aria-label={'Поле ввода фамилии'}

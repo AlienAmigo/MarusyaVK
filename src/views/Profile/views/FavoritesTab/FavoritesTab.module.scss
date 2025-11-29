@@ -1,2 +1,64 @@
+@use '@scss/mixins' as mx;
+
 .FavoritesTab {
+  $root: &;
+
+  display: flex;
+  flex: 1;
+
+  @include mx.vp-992 {
+    flex-wrap: nowrap;
+    margin: -4rem calc(var(--container-padding-sm) * -1) 0;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2.5rem;
+    row-gap: 4rem;
+    list-style: none;
+
+    @include mx.vp-992 {
+      flex-wrap: nowrap;
+      padding: 4rem var(--container-padding-sm);
+      overflow-x: auto;
+    }
+  }
+
+  &__item {
+    display: flex;
+    position: relative;
+
+    &:hover {
+      #{$root}__remove-btn {
+        display: flex;
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__remove-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -1.125rem;
+    right: -1.125rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--cl-bg-primary);
+    border-radius: 50%;
+    border: none;
+    outline: 0;
+    opacity: 0;
+
+
+    &:hover {
+      display: flex;
+      color: var(--cl-main);
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
 }

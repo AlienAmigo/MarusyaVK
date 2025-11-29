@@ -1,5 +1,5 @@
 import axiosInstance from './axiosInstance';
-import { AUTH_LOGIN_URL, AUTH_LOGOUT_URL, USER_CREATE_URL, PROFILE_URL } from '@/config';
+import { AUTH_LOGIN_URL, AUTH_LOGOUT_URL, USER_CREATE_URL, PROFILE_URL } from '@config';
 
 export interface LoginData {
   email: string;
@@ -9,7 +9,7 @@ export interface LoginData {
 export interface RegisterData {
   email: string;
   name: string;
-  secondName: string;
+  surname: string;
   password: string;
   passwordCheck: string;
 }
@@ -18,7 +18,8 @@ export interface User {
   id: number;
   email: string;
   name: string;
-  secondName: string;
+  surname: string;
+  favorites: number[];
 }
 
 export const authService = {
@@ -49,8 +50,8 @@ export const authService = {
       const response = await axiosInstance.get(PROFILE_URL);
       return response.data;
     } catch (error) {
-
-      console.log('User is not authenticated');
+      // Не логируем как ошибку, это нормальная ситуация для неавторизованного пользователя
+      console.log('User is not authenticated - silent check');
       return null;
     }
   },

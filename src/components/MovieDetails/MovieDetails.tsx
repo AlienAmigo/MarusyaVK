@@ -5,6 +5,7 @@ import { ImageWithLoader } from '@components/ui/ImageWithLoader';
 import { RatingBadge } from '@components/ui/RatingBadge';
 import { Button } from '@components/ui/Button';
 import { TrailerModal } from '@components/TrailerModal';
+import { LikeButton } from '@components/LikeButton';
 import RefreshImg from './assets/refresh.svg?react';
 import LikeImg from './assets/like.svg?react';
 
@@ -45,8 +46,6 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
 
   const [showTrailerModal, setShowTrailerModal] = useState<boolean>(false);
 
-  const navigate = useNavigate();
-
   const classes = classNames(
     st.MovieDetails,
     { [st['MovieDetails--full-info']]: fullInfo },
@@ -63,9 +62,7 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
     setShowTrailerModal(true);
   };
 
-  const handleOnShowFilmDetails = () => navigate(`${basicRoutesEnum.FILM}/${id}`);
-
-  const handleOnLikeBtnClick = () => {};
+  const handleOnShowFilmDetails = () => `${basicRoutesEnum.FILM}/${id}`;
 
   const handleOnCloseTrailer = () => setShowTrailerModal(false);
 
@@ -95,9 +92,7 @@ export const MovieDetails: React.FC<IMovieDetailsProps> = props => {
               О фильме
             </Button>
           )}
-          <Button isIcon variant={VariantEnum.PRIMARY} onClick={handleOnLikeBtnClick}>
-            <LikeImg />
-          </Button>
+          <LikeButton movieId={id} />
           {onRefresh && (
             <Button
               isIcon

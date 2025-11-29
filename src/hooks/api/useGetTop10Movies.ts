@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useFetch } from '@hooks/useFetch';
 
-import { MOVIE_TOP_10_URL } from '@/config';
+import { MOVIE_TOP_10_URL } from '@config';
 import { IMovie } from '@/types/';
 
 export const useGetTop10Movies = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { formatDigitByClasses } from '@/helpers';
+import { formatDigitByClasses } from '@helpers';
 
 import { IMovie } from '@/types';
 

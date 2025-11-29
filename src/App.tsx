@@ -26,11 +26,11 @@ const App: React.FC = () => {
         <Route path={routesEnum.GENRE} element={SuspenseElement(<Genre />)} />
         <Route
           path={`${routesEnum.PROFILE}/*`}
-          element={SuspenseElement(
+          element={
             <ProtectedRoute>
-              <Profile />
+              {SuspenseElement(<Profile />)}
             </ProtectedRoute>
-          )}
+          }
         />
         <Route path={routesEnum.AUTH} element={SuspenseElement(<Auth />)} />
         <Route path={routesEnum.REGISTER} element={SuspenseElement(<Register />)} />

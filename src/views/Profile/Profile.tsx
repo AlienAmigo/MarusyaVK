@@ -31,6 +31,7 @@ const Profile: React.FC<IProfile> = ({ className }) => {
     location.pathname.endsWith(routesEnum.FAVORITES) ||
     location.pathname === routesEnum.PROFILE ||
     !location.pathname.endsWith(routesEnum.SETTINGS);
+
   const isSettingsActive = location.pathname.endsWith(routesEnum.SETTINGS);
 
   const handleTabClick = (tab: profileRoutesEnum) => {
@@ -41,7 +42,6 @@ const Profile: React.FC<IProfile> = ({ className }) => {
     }
   };
 
-  console.log('');
 
   return (
     <div className={classes}>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL, DEFAULT_TIMEOUT } from '@config/';
+import { BASE_URL, DEFAULT_TIMEOUT } from '@config';
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -26,21 +26,6 @@ const processQueue = (error: any, token: string | null = null) => {
 };
 
 // Request interceptor
-axiosInstance.interceptors.request.use(
-  config => {
-    console.log(`🚀 Making ${config.method?.toUpperCase()} request to: ${config.url}`);
-
-    // Добавляем заголовки для CORS
-    if (config.method?.toUpperCase() === 'POST' || config.method?.toUpperCase() === 'PUT') {
-      config.headers['Content-Type'] = 'application/json';
-    }
-
-    return config;
-  },
-  error => Promise.reject(error)
-);
-
-// Response interceptor
 axiosInstance.interceptors.response.use(
   response => {
     console.log(`✅ Success: ${response.status} ${response.config.url}`);
@@ -90,23 +75,13 @@ axiosInstance.interceptors.response.use(
         processQueue(refreshError, null);
         isRefreshing = false;
 
-        // Перенаправляем на страницу логина
-        if (window.location.pathname !== '/auth') {
-          window.location.href = '/auth';
-        }
+        // УБИРАЕМ автоматическое перенаправление на страницу логина
+        console.log('Token refresh failed, user needs to login');
         return Promise.reject(refreshError);
       }
     }
 
-    // Для других ошибок
-    if (error.response?.status === 401) {
-      // Перенаправляем на страницу логина
-      if (window.location.pathname !== '/auth') {
-        window.location.href = '/auth';
-      }
-    }
-
-    return Promise.reject(error);
+  return Promise.reject(error);
   }
 );
 

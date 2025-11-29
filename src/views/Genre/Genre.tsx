@@ -9,7 +9,7 @@ import { Button } from '@components/ui/Button';
 import { useParams } from 'react-router-dom';
 import { useGetMovie } from '@hooks/api/useGetMovie';
 
-import { uppercaseFirstChar } from '@/helpers';
+import { uppercaseFirstChar } from '@helpers';
 
 import { IMovie, VariantEnum } from '@/types';
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useFetch } from '@hooks/useFetch';
-import { MOVIE_BY_ID_URL } from '@/config';
+import { MOVIE_BY_ID_URL } from '@config';
 
 import { IMovie } from '@/types';
 

@@ -5,22 +5,21 @@ import { Loader } from '@components/ui/Loader';
 import { routesEnum } from '@/routes';
 
 interface ProtectedRouteProps {
-  children: React.ReactElement;
+  children: React.ReactNode;
 }
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { isAuthenticated, authChecked } = useAuth();
   const location = useLocation();
 
-  // Если проверка авторизации еще не завершена - НЕ ПЕРЕНАПРАВЛЯЕМ, ждем
   if (!authChecked) {
     return <Loader center />;
   }
 
-  // Только после завершения проверки решаем, перенаправлять или нет
-  return isAuthenticated ? (
-    children
-  ) : (
-    <Navigate to={routesEnum.AUTH} state={{ from: location }} replace />
-  );
+  if (!isAuthenticated) {
+    // Перенаправляем на страницу авторизации, сохраняя текущий путь для возврата
+    return <Navigate to={routesEnum.AUTH} state={{ from: location }} replace />;
+  }
+
+  return <>{children}</>;
 };

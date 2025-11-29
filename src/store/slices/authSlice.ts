@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { authService, User, LoginData, RegisterData } from '@/services/authService';
+import { authService, User, LoginData, RegisterData } from '@services/authService';
 
-interface AuthState {
+export interface AuthState {
   user: User | null;
-  isAuthenticated: boolean; // Состояние авторизации пользователя
+  isAuthenticated: boolean;
   isLoading: boolean;
-  authChecked: boolean; // Флаг, что проверка авторизации выполнена
+  authChecked: boolean;
   error: string | null;
 }
 
@@ -45,7 +45,7 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await authService.logout();
-    } catch (error: any) {
+    } catch (error: unknown) {
       return rejectWithValue(error.response?.data?.message || 'Ошибка выхода');
     }
   }
@@ -55,10 +55,10 @@ export const checkAuth = createAsyncThunk(
   'auth/checkAuth',
   async (_, { rejectWithValue }) => {
     try {
-      const user = await authService.checkAuth();
-      return user;
-    } catch (error: any) {
-      return rejectWithValue('Не авторизован');
+      const userInfo = await authService.checkAuth();
+      return userInfo;
+    } catch (error) {
+      return null;
     }
   }
 );

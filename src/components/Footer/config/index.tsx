@@ -5,7 +5,7 @@ import ytImg from '../assets/yt.svg?react';
 import okImg from '../assets/ok.svg?react';
 import tgImg from '../assets/tg.svg?react';
 
-import { socialLinks } from '@/config/';
+import { socialLinks } from '@config';
 
 export const footerConfig: {
   href: string;

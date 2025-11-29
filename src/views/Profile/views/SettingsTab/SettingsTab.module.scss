@@ -1,2 +1,69 @@
+@use "@scss/mixins" as mx;
+
 .SettingsTab {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+
+  @include mx.vp-992 {
+    gap: 2.5rem;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  &__info-item {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-template-rows: repeat(2, max-content);
+    grid-template-areas: 'icon field' 'icon value';
+    column-gap: 1rem;
+    row-gap: 0.25rem;
+  }
+
+  &__icon {
+    grid-area: icon;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 50%;
+    background-color: var(--cl-content-disabled);
+    color: var(--cl-content-primary);
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 2rem;
+
+    @include mx.vp-992 {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  &__field {
+    grid-area: field;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+
+    @include mx.vp-992 {
+      color: var(--cl-content-disabled );
+    }
+  }
+
+  &__value {
+    grid-area: value;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  &__logout {
+    @include mx.vp-992 {
+      min-width: 335px;
+    }
+  }
 }

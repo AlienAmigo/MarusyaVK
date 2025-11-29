@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { AxiosRequestConfig } from 'axios';
-import axiosInstance from '@/services/axiosInstance';
+import axiosInstance from '@services/axiosInstance';
 
 export const useFetch = <T = unknown>(url: string = '', props: AxiosRequestConfig = {}) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);

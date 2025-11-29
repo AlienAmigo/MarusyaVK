@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState, AppDispatch } from '@/store';
 import { login, register, logout, checkAuth, clearError } from '@store/slices/authSlice';
-import type { LoginData, RegisterData } from '@/services/authService';
+import type { LoginData, RegisterData } from '@services/authService';
 
 export const useAuth = () => {
   const dispatch = useDispatch<AppDispatch>();

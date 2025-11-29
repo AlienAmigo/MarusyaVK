@@ -15,9 +15,11 @@ export const AuthInitializer: React.FC<AuthInitializerProps> = ({ children }) =>
     }
   }, [checkAuth, authChecked]);
 
+  // Показываем лоадер только при первой проверке авторизации
   if (!authChecked) {
     return <Loader center />;
   }
 
+  // После проверки просто рендерим детей, пусть ProtectedRoute решает перенаправления
   return <>{children}</>;
 };

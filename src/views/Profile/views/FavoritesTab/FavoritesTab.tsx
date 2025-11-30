@@ -20,7 +20,7 @@ const FavoritesTab: React.FC<IFavoritesTabProps> = ({ className }) => {
   const classes = classNames(st.FavoritesTab, className);
 
   const dispatch = useDispatch<AppDispatch>();
-  const { items, isLoading, error } = useSelector((state: RootState) => state.favorites);
+  const { items, isLoading } = useSelector((state: RootState) => state.favorites);
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
@@ -36,8 +36,6 @@ const FavoritesTab: React.FC<IFavoritesTabProps> = ({ className }) => {
         dispatch(fetchFavorites());
       });
   };
-
-  console.log('items', items);
 
   return (
     <div className={classes}>

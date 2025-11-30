@@ -1,6 +1,8 @@
 @use '@scss/mixins' as mx;
 
 .RatingBadge {
+  $root: &;
+
   --rating-badge-bg-color: var(--rating-badge-custom-bg-color, var(--cl-rating-grey));
 
   display: flex;
@@ -29,6 +31,26 @@
     @include mx.vp-992 {
       width: 0.625rem;
       height: 0.625rem;
+    }
+  }
+
+  &--theme {
+
+    &--basic {
+      display: flex;
+    }
+
+    &--search {
+      display: flex;
+      min-width: 3rem;
+      padding: 0.125rem 0.5rem;
+      font-size: 0.75rem;
+      line-height: 1rem;
+
+      #{$root}__icon {
+        width: 0.625rem;
+        height: 0.625rem;
+      }
     }
   }
 }

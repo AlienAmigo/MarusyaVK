@@ -4,15 +4,21 @@ import classNames from 'classnames';
 import StarImg from './assets/star.svg?react';
 
 import { TCustomStyleProps } from '@/types';
+import { RatingBadgeThemeEnum } from './types';
 
 import st from './RatingBadge.module.scss';
 
 export interface IRatingBadgeProps {
   className?: string;
   rating: number;
+  theme?: RatingBadgeThemeEnum;
 }
 
-export const RatingBadge: React.FC<IRatingBadgeProps> = ({ rating, className }) => {
+export const RatingBadge: React.FC<IRatingBadgeProps> = ({
+  rating,
+  theme = RatingBadgeThemeEnum.BASIC,
+  className,
+}) => {
   const ratingFixed = rating ? Number(+rating.toFixed(1)) : rating;
 
   const setBGColor = () => {
@@ -32,7 +38,11 @@ export const RatingBadge: React.FC<IRatingBadgeProps> = ({ rating, className }) 
     ['--rating-badge-custom-bg-color']: setBGColor(),
   };
 
-  const classes = classNames(st.RatingBadge, className);
+  const classes = classNames(
+    st.RatingBadge,
+    { [st[`RatingBadge--theme--${theme}`]]: theme },
+    className
+  );
 
   return (
     <div className={classes} style={customStyleProps}>

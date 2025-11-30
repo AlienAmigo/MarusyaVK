@@ -11,15 +11,18 @@ export const useGetMovie = (
     page?: number;
     title?: string;
     genre?: string;
-  } = {}
+  } = {},
+  condition: boolean = true
 ) => {
-  const { state, fetch, refetch } = useFetch<IMovie[]>(MOVIE_URL, {
+  const { state, fetch, refetch, setData } = useFetch<IMovie[]>(MOVIE_URL, {
     params: params,
   });
 
   useEffect(() => {
-    fetch();
-  }, [params.count, params.page, params.title, params.genre, fetch]);
+    if (condition) {
+      fetch();
+    }
+  }, [condition, params.count, params.page, params.title, params.genre, fetch]);
 
-  return { ...state, refetch };
+  return { ...state, refetch, setData};
 };

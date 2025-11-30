@@ -31,5 +31,5 @@ export const useFetch = <T = unknown>(url: string = '', props: AxiosRequestConfi
     fetch();
   }, []);
 
-  return { state: { isLoading, error, data }, fetch, refetch };
+  return { state: { isLoading, error, data }, fetch, refetch, setData };
 };

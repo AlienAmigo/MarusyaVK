@@ -1,4 +1,5 @@
 @use '@scss/mixins' as mx;
+@use '@scss/global/animate';
 
 .Header {
   display: flex;
@@ -116,6 +117,10 @@
         color: var(--cl-main);
       }
     }
+
+    &--active {
+      color: var(--cl-main);
+    }
   }
 
   &__search-field {
@@ -124,6 +129,17 @@
 
     @include mx.vp-992 {
       display: none;
+      position: absolute;
+      z-index: var(--z-layer-header);
+      top: calc(100% - 0.75rem);
+      left: var(--container-padding-sm);
+      right: var(--container-padding-sm);
+      width: calc(100% - 2 * var(--container-padding-sm));
+      animation: fadeDown 0.35s ease;
+    }
+
+    &--visible-sm {
+      display: flex;
     }
   }
 }

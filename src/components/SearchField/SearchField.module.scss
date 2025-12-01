@@ -76,13 +76,28 @@
     padding: 0.5rem;
     border-radius: 0.5rem;
     background-color: var(--cl-bg-secondary);
-    overflow-y: auto;
+
+    @include mx.vp-992 {
+      flex-direction: row;
+      gap: 1rem;
+      top: calc(100% + 0.25rem);
+      max-width: 100%;
+      max-height: max-content;
+      padding: 1.5rem 1.25rem;
+    }
   }
 
   &__results-list {
     display: flex;
     flex-direction: column;
     list-style: none;
+    overflow-y: auto;
+
+     @include mx.vp-992 {
+       flex-direction: row;
+       gap: 1rem;
+       padding: 1.5rem 1.25rem;
+     }
   }
 
   &__empty-result {

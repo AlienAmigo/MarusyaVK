@@ -7,7 +7,7 @@ import MagnifierImg from './assets/magnifier.svg?react';
 import CrossImg from './assets/cross.svg?react';
 
 import { useGetMovie } from '@hooks/api/useGetMovie';
-import { useDebounce } from '@/hooks';
+import { useDebounce, useOnClickOutside } from '@/hooks';
 import { useNavigate } from 'react-router-dom';
 
 import { SEARCH_QUERY_DELAY } from '@config';
@@ -18,11 +18,16 @@ import st from './SearchField.module.scss';
 
 export interface ISearchFieldProps extends React.HTMLAttributes<HTMLFormElement> {
   className?: string;
+  toggleSearchField?: () => void;
 }
 
-export const SearchField: React.FC<ISearchFieldProps> = ({ className }) => {
+export const SearchField: React.FC<ISearchFieldProps> = ({
+  toggleSearchField = () => {},
+  className,
+}) => {
   const [query, setQuery] = useState<string>('');
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const resultsRef = useRef<HTMLFormElement | null>(null);
 
   const classes = classNames(st.SearchField, className);
 
@@ -52,6 +57,7 @@ export const SearchField: React.FC<ISearchFieldProps> = ({ className }) => {
 
   const handleOnResultItemClick = (id: number) => {
     clearQuery();
+    toggleSearchField();
     navigate(`${basicRoutesEnum.FILM}/${id}`);
   };
 
@@ -59,8 +65,13 @@ export const SearchField: React.FC<ISearchFieldProps> = ({ className }) => {
     setQuery(ev.target.value);
   };
 
+  useOnClickOutside(resultsRef as React.RefObject<HTMLElement>, () => {
+    toggleSearchField();
+    clearQuery();
+  });
+
   return (
-    <form method={'POST'} className={classes} onSubmit={handleSubmit}>
+    <form method={'POST'} className={classes} ref={resultsRef} onSubmit={handleSubmit}>
       {isLoading ? (
         <Loader className={st.SearchField__loader} />
       ) : (

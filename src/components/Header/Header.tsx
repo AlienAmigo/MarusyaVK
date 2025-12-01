@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import { NavLink } from 'react-router-dom';
 import { SearchField } from '@components/SearchField';
-import { Logo } from '@components/ui/Logo'
+import { Logo } from '@components/ui/Logo';
 import GenresImg from './assets/gernes.svg?react';
 import SearchImg from './assets/search.svg?react';
 import UserImg from './assets/user.svg?react';
@@ -20,6 +20,7 @@ export interface IHeader {
 
 export const Header: React.FC<IHeader> = ({ className }) => {
   const { isAuthenticated, user } = useAuth();
+  const [searchFieldMobileVisible, setSearchFieldMobileVisible] = useState<boolean>(false);
 
   const classes = classNames('container', st.Header, className);
 
@@ -27,19 +28,23 @@ export const Header: React.FC<IHeader> = ({ className }) => {
     classNames(st['Header__nav-link'], { [st['Header__nav-link--active']]: isActive });
   const mainClasses = classNames('hidden-sm', st['Header__nav-list']);
 
-  const showSearchField = () => {}
+  const searchFieldClasses = classNames(st['Header__search-field'], {
+    [st['Header__search-field--visible-sm']]: searchFieldMobileVisible,
+  });
 
+  const toggleSearchFieldBtnClasses = classNames(st['Header__nav-item-icon'], {
+    [st['Header__nav-item-icon--active']]: searchFieldMobileVisible,
+  });
 
-  console.log(isAuthenticated);
+  const toggleSearchField = () =>
+    searchFieldMobileVisible
+      ? setSearchFieldMobileVisible(false)
+      : setSearchFieldMobileVisible(true);
 
   return (
     <header className={classes}>
       <NavLink to={routesEnum.HOME} className={st['Header__logo-link']}>
-        <Logo
-          width={144}
-          height={32}
-          className={st.Header__logo}
-        />
+        <Logo width={144} height={32} className={st.Header__logo} />
       </NavLink>
       <nav className={st.Header__nav}>
         <ul className={mainClasses}>
@@ -54,16 +59,21 @@ export const Header: React.FC<IHeader> = ({ className }) => {
               <GenresImg className={st['Header__nav-item-icon']} />
             </NavLink>
           </li>
-          <button className={st['Header__nav-item-icon']} type={'button'} onClick={showSearchField}>
+          <button
+            className={toggleSearchFieldBtnClasses}
+            type={'button'}
+            onClick={toggleSearchField}
+          >
             <SearchImg />
           </button>
-          <SearchField className={st['Header__search-field']} />
+          <SearchField
+            className={searchFieldClasses}
+            toggleSearchField={() => setSearchFieldMobileVisible(false)}
+          />
           <li className={st['Header__nav-item']}>
             {isAuthenticated ? (
               <NavLink to={routesEnum.PROFILE} className={st['Header__nav-link']}>
-                <span className={st['Header__nav-item-title']}>
-                  {user?.name || 'Профиль'}
-                </span>
+                <span className={st['Header__nav-item-title']}>{user?.name || 'Профиль'}</span>
                 <UserImg className={st['Header__nav-item-icon']} />
               </NavLink>
             ) : (

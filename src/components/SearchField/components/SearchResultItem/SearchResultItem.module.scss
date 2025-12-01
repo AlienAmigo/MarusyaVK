@@ -17,18 +17,30 @@
     border-color: var(--cl-content-disabled);
   }
 
+  @include mx.vp-992 {
+    grid-template-columns: 1fr;
+    align-items: start;
+    row-gap: 0.5rem;
+    width: 13.75rem;
+    height: 20.625rem;
+    padding: 0;
+  }
+
   &__header {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
     max-width: 100%;
+
+    @include mx.vp-992 {
+      row-gap: 0.25rem;
+    }
   }
 
   &__header-item {
     color: var(--cl-content-secondary);
     font-size: 0.875rem;
     line-height: 1.25rem;
-
 
     &--genres {
       @include mx.text-overflow();
@@ -37,6 +49,13 @@
 
   &__img {
     grid-row: span 2;
+
+    @include mx.vp-992 {
+      grid-row: unset;
+      width: 158px;
+      height: 206px;
+      margin-bottom: 0.5rem;
+    }
   }
 
   &__title {

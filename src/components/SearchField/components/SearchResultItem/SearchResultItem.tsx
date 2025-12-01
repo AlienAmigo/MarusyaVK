@@ -18,7 +18,6 @@ export const SearchResultItem: React.FC<ISearchResultItemProps> = props => {
   const {
     className,
     onClick = () => {},
-    id,
     title,
     tmdbRating,
     releaseYear,

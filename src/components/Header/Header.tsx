@@ -41,6 +41,12 @@ export const Header: React.FC<IHeader> = ({ className }) => {
       ? setSearchFieldMobileVisible(false)
       : setSearchFieldMobileVisible(true);
 
+  const handleProfileClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname.startsWith(routesEnum.PROFILE)) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <header className={classes}>
       <NavLink to={routesEnum.HOME} className={st['Header__logo-link']}>
@@ -48,7 +54,7 @@ export const Header: React.FC<IHeader> = ({ className }) => {
       </NavLink>
       <nav className={st.Header__nav}>
         <ul className={mainClasses}>
-          <li className={st['Header__nav-item']}>
+          <li className={classNames(st['Header__nav-item'], st['Header__nav-item--hidden-sm'])}>
             <NavLink to={routesEnum.HOME} className={linkClasses}>
               <span className={st['Header__nav-item-title']}>Главная</span>
             </NavLink>
@@ -72,7 +78,12 @@ export const Header: React.FC<IHeader> = ({ className }) => {
           />
           <li className={st['Header__nav-item']}>
             {isAuthenticated ? (
-              <NavLink to={routesEnum.PROFILE} className={st['Header__nav-link']}>
+              <NavLink
+                to={routesEnum.PROFILE}
+                end={false}
+                onClick={handleProfileClick}
+                className={linkClasses}
+              >
                 <span className={st['Header__nav-item-title']}>{user?.name || 'Профиль'}</span>
                 <UserImg className={st['Header__nav-item-icon']} />
               </NavLink>

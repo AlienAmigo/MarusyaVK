@@ -4,10 +4,11 @@ import classNames from 'classnames';
 import { ImageWithLoader } from '@components/ui/ImageWithLoader';
 import { RatingBadge, RatingBadgeThemeEnum } from '@components/ui/RatingBadge';
 
+import { formatMinutes } from '@/helpers';
+
 import { IMovie } from '@types';
 
 import st from './SearchResultItem.module.scss';
-import { formatMinutes } from '@/helpers';
 
 export interface ISearchResultItemProps extends IMovie {
   className?: string;

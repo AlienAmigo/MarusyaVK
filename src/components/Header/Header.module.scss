@@ -1,6 +1,8 @@
 @use '@scss/mixins' as mx;
 
 .Header {
+  $root: &;
+
   display: flex;
   gap: 5rem;
   position: sticky;
@@ -60,6 +62,9 @@
     font-size: 1.5rem;
     line-height: 2rem;
     color: var(--cl-white);
+
+    @include mx.vp-992 {
+    }
   }
 
   &__nav-link {
@@ -91,6 +96,10 @@
 
       @include mx.vp-992 {
         color: var(--cl-main);
+
+        #{$root}__nav-item-icon {
+          color: var(--cl-main);
+        }
       }
     }
   }

@@ -31,8 +31,6 @@ export const LikeButton: React.FC<ILikeButtonProps> = ({ movieId, className }) =
 
   const isLiked = movieId && favorites.some(favId => Number(favId) === movieId);
 
-  console.log('favorites', favorites);
-
   const handleOnClick = () => {
     if (isAuthenticated) {
       if (movieId) {

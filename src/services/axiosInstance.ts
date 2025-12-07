@@ -28,18 +28,17 @@ const processQueue = (error: any, token: string | null = null) => {
 // Request interceptor
 axiosInstance.interceptors.response.use(
   response => {
-    console.log(`✅ Success: ${response.status} ${response.config.url}`);
+    // console.log(`✅ Success: ${response.status} ${response.config.url}`);
     return response;
   },
   async error => {
-    console.log(`❌ Error: ${error.response?.status} ${error.config?.url}`);
-    console.log('Error details:', error.response?.data);
-
+    // console.log(`❌ Error: ${error.response?.status} ${error.config?.url}`);
+    // console.log('Error details:', error.response?.data);
+    //
     const originalRequest = error.config;
 
     // Если это OPTIONS запрос и статус 204 - это нормально, пропускаем
     if (originalRequest?.method?.toUpperCase() === 'OPTIONS' && error.response?.status === 204) {
-      console.log('OPTIONS preflight successful');
       return Promise.resolve({ data: {}, status: 204 });
     }
 
@@ -76,7 +75,7 @@ axiosInstance.interceptors.response.use(
         isRefreshing = false;
 
         // УБИРАЕМ автоматическое перенаправление на страницу логина
-        console.log('Token refresh failed, user needs to login');
+        // console.log('Token refresh failed, user needs to login');
         return Promise.reject(refreshError);
       }
     }

@@ -43,7 +43,6 @@ export const useGetGenres = () => {
 
       // Обрабатываем жанры последовательно
       for (const genre of genres) {
-        console.log('Fetching posters for genre:', genre);
 
         try {
           // Запрашиваем несколько фильмов за раз
@@ -68,30 +67,19 @@ export const useGetGenres = () => {
               genre,
               imgUrl: uniqueMovie.backdropUrl
             });
-            console.log(`Found unique poster for ${genre}`);
           } else if (movies.length > 0 && movies[0]?.backdropUrl) {
             // Если не нашли уникальный, берем первый доступный (даже если дублируется)
             posters.push({
               genre,
               imgUrl: movies[0].backdropUrl
             });
-            console.log(`Using available poster for ${genre}`);
-          } else {
-            // Если нет постеров вообще
-            posters.push({ genre, imgUrl: '' });
-            console.log(`No poster found for ${genre}`);
           }
-
         } catch (error) {
           console.error(`Error fetching posters for ${genre}:`, error);
-          // В случае ошибки все равно добавляем жанр
-          posters.push({ genre, imgUrl: '' });
         }
       }
 
       setGenrePosters(posters);
-      console.log(`Final result: ${posters.filter(p => p.imgUrl).length} unique posters for ${genres.length} genres`);
-
     } catch (error) {
       console.error('Error fetching genre posters:', error);
     } finally {

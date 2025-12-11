@@ -10,7 +10,7 @@ import App from './App.tsx';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/MarusyaVK">
         <AuthInitializer>
           <App />
         </AuthInitializer>
